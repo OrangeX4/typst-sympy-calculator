@@ -5,39 +5,59 @@ from gen.TypstGrammarParser import TypstGrammarParser
 from gen.TypstGrammarLexer import TypstGrammarLexer
 from gen.TypstGrammarListener import TypstGrammarListener
 
-def typst_parser(typst_expr: str):
-    # setup listener
-    matherror = MathErrorListener(typst_expr)
+class TypstMathParser:
 
-    # stream input
-    stream = InputStream(typst_expr)
-    lex = TypstGrammarLexer(stream)
-    lex.id2type['plus'] = 'ADDITIVE_OP'
-    lex.removeErrorListeners()
-    lex.addErrorListener(matherror)
+    MATH_START = '<typst_math_start>'
+    MATH_END = '<typst_math_end>'
 
-    tokens = CommonTokenStream(lex)
-    parser = TypstGrammarParser(tokens)
+    id2type = {}
 
-    # remove default console error listener
-    parser.removeErrorListeners()
-    parser.addErrorListener(matherror)
+    def __init__(self):
+        # setup listener
+        self.matherror = MathErrorListener()
+        # setup lexer
+        self.init_lex()
 
-    # process the input
-    return_data = None
-    math = parser.math()
+    def init_lex(self):
+        self.id2type['plus'] = 'ADDITIVE_OP'
 
-    return math
+    def parse(self, typst_math):
+        # set the input and matherror
+        self.matherror.reset(typst_math, len(self.MATH_START))
+        src = self.MATH_START + typst_math + self.MATH_END
+
+        # stream input
+        stream = InputStream(src)
+        lex = TypstGrammarLexer(stream)
+        lex.id2type = self.id2type
+        lex.removeErrorListeners()
+        lex.addErrorListener(self.matherror)
+
+        tokens = CommonTokenStream(lex)
+        parser = TypstGrammarParser(tokens)
+
+        # remove default console error listener
+        parser.removeErrorListeners()
+        parser.addErrorListener(self.matherror)
+        # process the input
+        math = parser.math()
+
+        return math
 
 
 class MathErrorListener(ErrorListener):
-    def __init__(self, src):
+    def __init__(self):
         super(ErrorListener, self).__init__()
+        self.cur = 0
+        self.src = ''
+
+    def reset(self, src, cur):
+        self.cur = cur
         self.src = src
 
     def syntaxError(self, recog, symbol, line, col, msg, e):
         fmt = "%s\n%s\n%s"
-        marker = "~" * col + "^"
+        marker = "~" * (col - self.cur) + "^"
 
         if msg.startswith("missing"):
             err = fmt % (msg, self.src, marker)
@@ -55,13 +75,12 @@ class MathErrorListener(ErrorListener):
         else:
             err = fmt % ("I don't understand this", self.src, marker)
         raise Exception(err)
-    
 
-
-def convert_relation(relation):
-    return relation
 
 
 if __name__ == '__main__':
-    math = typst_parser("2 plus 3")
+    typst_parser = TypstMathParser()
+    math = typst_parser.parse("2 plus 3")
+    print(math.getText())
+    math = typst_parser.parse("1 plus 2")
     print(math.getText())

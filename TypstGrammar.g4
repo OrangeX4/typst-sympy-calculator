@@ -22,13 +22,16 @@ fragment LETTER: [a-zA-Z];
 fragment DIGIT: [0-9];
 fragment PERIOD: '.';
 
+MATH_START: '<typst_math_start>';
+MATH_END: '<typst_math_end>';
+
 WS: WS_CHAR+ -> skip;
 
 ID:
 	LETTER (LETTER | DIGIT)* (PERIOD LETTER (LETTER | DIGIT)*)* {self.setType()};
 
-ADDITIVE_OP: '+';
-MP_OP: '*';
+ADDITIVE_OP: '+' | '-';
+MP_OP: '*' | '/' | '\\/';
 
 L_PAREN: '(';
 R_PAREN: ')';
@@ -36,6 +39,7 @@ L_BRACE: '{';
 R_BRACE: '}';
 L_BRACKET: '[';
 R_BRACKET: ']';
+QUOTE: '"';
 
 UNDERSCORE: '_';
 CARET: '^';
@@ -51,7 +55,7 @@ RELATION_OP: '=';
 
 // --------------------------------------------------------------------------------
 
-math: relation;
+math: MATH_START relation MATH_END;
 
 relation: relation RELATION_OP relation | expr;
 
