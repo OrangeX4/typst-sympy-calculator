@@ -4,7 +4,7 @@ from functools import wraps, reduce
 from typing import Callable
 
 
-class TypstCalculator(object):
+class TypstConverter(object):
 
     id2type = {}
     id2func = {}
@@ -12,9 +12,10 @@ class TypstCalculator(object):
     def __init__(self) -> None:
         self.parser = TypstMathParser()
 
-    def register(self, name: str, type: str, func: Callable):
+    def register(self, name: str, type: str, func: Callable = None):
         self.id2type[name] = type
-        self.id2func[name] = func
+        if isinstance(func, Callable):
+            self.id2func[name] = func
 
     def sympy(self, typst_math: str):
         self.parser.id2type = self.id2type
@@ -353,19 +354,19 @@ class TypstCalculator(object):
 
 
 if __name__ == '__main__':
-    calculator = TypstCalculator()
-    operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat = calculator.get_decorators()
+    convertor = TypstConverter()
+    operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat = convertor.get_decorators()
 
     @func()
     def convert_sin(x):
         return sympy.sin(x)
-    
+
     @func_mat()
     def convert_mat(mat):
         return sympy.matrices.Matrix(mat)
-    
-    expr = calculator.sympy('1 + sin 1/2 + x + 1')
+
+    expr = convertor.sympy('1 + sin 1/2 + x + 1')
     print(sympy.simplify(expr))
 
-    expr = calculator.sympy('mat(1, 2; 3, 4)')
+    expr = convertor.sympy('mat(1, 2; 3, 4)')
     print(sympy.simplify(expr))
