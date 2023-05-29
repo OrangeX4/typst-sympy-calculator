@@ -4,7 +4,7 @@ from functools import wraps, reduce
 from typing import Callable
 
 
-class TypstConverter(object):
+class TypstMathConverter(object):
 
     id2type = {}
     id2func = {}
@@ -12,15 +12,33 @@ class TypstConverter(object):
     def __init__(self) -> None:
         self.parser = TypstMathParser()
 
-    def register(self, name: str, type: str, func: Callable = None):
+    def define(self, name: str, type: str, func: Callable = None):
         self.id2type[name] = type
         if isinstance(func, Callable):
             self.id2func[name] = func
 
-    def sympy(self, typst_math: str):
+    def undefine(self, name: str):
+        if name in self.id2type:
+            del self.id2type[name]
+        if name in self.id2func:
+            del self.id2func[name]
+
+    def define_accent(self, accent_name: str):
+        self.define(accent_name, 'ACCENT_OP')
+
+    def define_symbol_base(self, symbol_base_name: str):
+        self.define(symbol_base_name, 'SYMBOL_BASE')
+
+    def parse(self, typst_math: str):
         self.parser.id2type = self.id2type
-        math = self.parser.parse(typst_math)
+        return self.parser.parse(typst_math)
+
+    def sympy(self, typst_math: str):
+        math = self.parse(typst_math)
         return self.convert_math(math)
+
+    def typst(self, sympy_expr):
+        return sympy.sstr(sympy_expr, full_prec=True, order='none')
 
     def convert_math(self, math):
         return self.convert_relation(math.relation())
@@ -288,7 +306,7 @@ class TypstConverter(object):
                         return func(*args, **kwargs)
                     self.func = ast_func
                     # save to env
-                    self.env.register(self.name, self.type, self.func)
+                    self.env.define(self.name, self.type, self.func)
                 return self.func
 
             def __repr__(self):
@@ -354,7 +372,7 @@ class TypstConverter(object):
 
 
 if __name__ == '__main__':
-    convertor = TypstConverter()
+    convertor = TypstMathConverter()
     operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat = convertor.get_decorators()
 
     @func()
