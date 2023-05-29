@@ -20,6 +20,8 @@ class TypstMathParser:
 
     def init_lex(self):
         self.id2type['plus'] = 'ADDITIVE_OP'
+        self.id2type['sum'] = 'REDUCE_OP'
+        self.id2type['sin'] = 'FUNC'
 
     def parse(self, typst_math):
         # set the input and matherror
@@ -80,7 +82,21 @@ class MathErrorListener(ErrorListener):
 
 if __name__ == '__main__':
     typst_parser = TypstMathParser()
-    math = typst_parser.parse("2 plus 3")
-    print(math.getText())
-    math = typst_parser.parse("1 plus 2")
-    print(math.getText())
+    math = typst_parser.parse("sin(1 + 2) / 2")
+    assert math.relation().expr().additive().mp().mp()[0].unary().postfix()[0].exp().comp().func().args().relation()[0].getText() == '1+2'
+    math = typst_parser.parse("sin(2 + 3)")
+    assert math.relation().expr().additive().mp().unary().postfix()[0].exp().comp().func().args().relation()[0].getText() == '2+3'
+    math = typst_parser.parse("sin(2 + 3,)")
+    assert math.relation().expr().additive().mp().unary().postfix()[0].exp().comp().func().args().relation()[0].getText() == '2+3'
+    math = typst_parser.parse("mat(1,2;3,4)")
+    assert math.relation().expr().additive().mp().unary().postfix()[0].exp().comp().matrix().mat_args().args()[0].getText() == '1,2'
+    math = typst_parser.parse("integral_1^2 x^2 dif x")
+    assert math.relation().expr().additive().mp().unary().postfix()[0].exp().comp().integral().additive().getText() == 'x^2'
+    math = typst_parser.parse("integral_1^2 integral_1^2 x y dif y dif x")
+    assert math.relation().expr().additive().mp().unary().postfix()[0].exp().comp().integral().additive().getText() == 'integral_1^2xydify'
+    math = typst_parser.parse("2^2^3")
+    assert math.relation().expr().additive().mp().unary().postfix()[0].exp().comp().getText() == '2'
+    math = typst_parser.parse("x_2^3")
+    assert math.relation().expr().additive().mp().unary().postfix()[0].exp().comp().getText() == 'x_2'
+    math = typst_parser.parse("sum_(k=1)^2 k^2 + 1")
+    assert math.relation().expr().additive().additive()[0].mp().unary().postfix()[0].exp().comp().reduceit().mp().getText() == 'k^2'

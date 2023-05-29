@@ -71,3 +71,219 @@ class TypstGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TypstGrammarParser#subargs.
+    def enterSubargs(self, ctx:TypstGrammarParser.SubargsContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#subargs.
+    def exitSubargs(self, ctx:TypstGrammarParser.SubargsContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#subexpr.
+    def enterSubexpr(self, ctx:TypstGrammarParser.SubexprContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#subexpr.
+    def exitSubexpr(self, ctx:TypstGrammarParser.SubexprContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#supexpr.
+    def enterSupexpr(self, ctx:TypstGrammarParser.SupexprContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#supexpr.
+    def exitSupexpr(self, ctx:TypstGrammarParser.SupexprContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#subsupexpr.
+    def enterSubsupexpr(self, ctx:TypstGrammarParser.SubsupexprContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#subsupexpr.
+    def exitSubsupexpr(self, ctx:TypstGrammarParser.SubsupexprContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#subassign.
+    def enterSubassign(self, ctx:TypstGrammarParser.SubassignContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#subassign.
+    def exitSubassign(self, ctx:TypstGrammarParser.SubassignContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#supassign.
+    def enterSupassign(self, ctx:TypstGrammarParser.SupassignContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#supassign.
+    def exitSupassign(self, ctx:TypstGrammarParser.SupassignContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#subsupassign.
+    def enterSubsupassign(self, ctx:TypstGrammarParser.SubsupassignContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#subsupassign.
+    def exitSubsupassign(self, ctx:TypstGrammarParser.SubsupassignContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#eval_at.
+    def enterEval_at(self, ctx:TypstGrammarParser.Eval_atContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#eval_at.
+    def exitEval_at(self, ctx:TypstGrammarParser.Eval_atContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#exp.
+    def enterExp(self, ctx:TypstGrammarParser.ExpContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#exp.
+    def exitExp(self, ctx:TypstGrammarParser.ExpContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#comp.
+    def enterComp(self, ctx:TypstGrammarParser.CompContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#comp.
+    def exitComp(self, ctx:TypstGrammarParser.CompContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#group.
+    def enterGroup(self, ctx:TypstGrammarParser.GroupContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#group.
+    def exitGroup(self, ctx:TypstGrammarParser.GroupContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#abs_group.
+    def enterAbs_group(self, ctx:TypstGrammarParser.Abs_groupContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#abs_group.
+    def exitAbs_group(self, ctx:TypstGrammarParser.Abs_groupContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#args.
+    def enterArgs(self, ctx:TypstGrammarParser.ArgsContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#args.
+    def exitArgs(self, ctx:TypstGrammarParser.ArgsContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#mat_args.
+    def enterMat_args(self, ctx:TypstGrammarParser.Mat_argsContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#mat_args.
+    def exitMat_args(self, ctx:TypstGrammarParser.Mat_argsContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#func.
+    def enterFunc(self, ctx:TypstGrammarParser.FuncContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#func.
+    def exitFunc(self, ctx:TypstGrammarParser.FuncContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#matrix.
+    def enterMatrix(self, ctx:TypstGrammarParser.MatrixContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#matrix.
+    def exitMatrix(self, ctx:TypstGrammarParser.MatrixContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#reduceit.
+    def enterReduceit(self, ctx:TypstGrammarParser.ReduceitContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#reduceit.
+    def exitReduceit(self, ctx:TypstGrammarParser.ReduceitContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#lim.
+    def enterLim(self, ctx:TypstGrammarParser.LimContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#lim.
+    def exitLim(self, ctx:TypstGrammarParser.LimContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#integral.
+    def enterIntegral(self, ctx:TypstGrammarParser.IntegralContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#integral.
+    def exitIntegral(self, ctx:TypstGrammarParser.IntegralContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#text.
+    def enterText(self, ctx:TypstGrammarParser.TextContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#text.
+    def exitText(self, ctx:TypstGrammarParser.TextContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#accent.
+    def enterAccent(self, ctx:TypstGrammarParser.AccentContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#accent.
+    def exitAccent(self, ctx:TypstGrammarParser.AccentContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#symbol_base.
+    def enterSymbol_base(self, ctx:TypstGrammarParser.Symbol_baseContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#symbol_base.
+    def exitSymbol_base(self, ctx:TypstGrammarParser.Symbol_baseContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#symbol.
+    def enterSymbol(self, ctx:TypstGrammarParser.SymbolContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#symbol.
+    def exitSymbol(self, ctx:TypstGrammarParser.SymbolContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#atom.
+    def enterAtom(self, ctx:TypstGrammarParser.AtomContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#atom.
+    def exitAtom(self, ctx:TypstGrammarParser.AtomContext):
+        pass
+
+
