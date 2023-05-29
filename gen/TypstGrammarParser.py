@@ -8,137 +8,143 @@ import sys
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3&")
-        buf.write("\u012f\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3(")
+        buf.write("\u013a\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
         buf.write("\t\31\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36")
-        buf.write("\4\37\t\37\4 \t \3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3")
-        buf.write("\3\7\3K\n\3\f\3\16\3N\13\3\3\4\3\4\3\5\3\5\3\5\3\5\3\5")
-        buf.write("\3\5\7\5X\n\5\f\5\16\5[\13\5\3\6\3\6\3\6\3\6\3\6\3\6\7")
-        buf.write("\6c\n\6\f\6\16\6f\13\6\3\7\3\7\3\7\6\7k\n\7\r\7\16\7l")
-        buf.write("\5\7o\n\7\3\b\3\b\7\bs\n\b\f\b\16\bv\13\b\3\t\3\t\3\t")
-        buf.write("\3\t\3\t\3\t\5\t~\n\t\3\n\3\n\3\n\3\n\3\n\3\n\5\n\u0086")
-        buf.write("\n\n\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u008e\n\13\3\f")
-        buf.write("\3\f\3\f\3\f\3\f\3\f\5\f\u0096\n\f\3\r\3\r\3\r\3\r\3\r")
-        buf.write("\5\r\u009d\n\r\3\r\3\r\5\r\u00a1\n\r\3\16\3\16\3\16\3")
-        buf.write("\16\3\16\5\16\u00a8\n\16\3\16\3\16\5\16\u00ac\n\16\3\17")
-        buf.write("\3\17\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u00b6\n\17\3")
-        buf.write("\20\3\20\3\20\3\21\3\21\5\21\u00bd\n\21\3\22\3\22\3\22")
-        buf.write("\3\22\3\22\3\22\3\22\3\22\5\22\u00c7\n\22\3\23\3\23\3")
-        buf.write("\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\5\23")
-        buf.write("\u00d5\n\23\3\24\3\24\3\24\3\24\3\25\3\25\3\25\7\25\u00de")
-        buf.write("\n\25\f\25\16\25\u00e1\13\25\3\25\3\25\5\25\u00e5\n\25")
-        buf.write("\3\26\3\26\3\26\7\26\u00ea\n\26\f\26\16\26\u00ed\13\26")
-        buf.write("\3\26\3\26\5\26\u00f1\n\26\3\27\3\27\3\27\3\27\3\27\3")
-        buf.write("\27\5\27\u00f9\n\27\3\30\3\30\3\30\3\30\3\30\3\31\3\31")
-        buf.write("\3\31\3\31\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\33")
-        buf.write("\3\33\5\33\u010e\n\33\3\33\3\33\3\33\3\33\3\34\3\34\7")
-        buf.write("\34\u0116\n\34\f\34\16\34\u0119\13\34\3\34\3\34\3\35\3")
-        buf.write("\35\3\35\3\35\3\35\3\36\3\36\3\36\5\36\u0125\n\36\3\37")
-        buf.write("\3\37\5\37\u0129\n\37\3 \3 \5 \u012d\n \3 \3\u0117\5\4")
-        buf.write("\b\n!\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.")
-        buf.write("\60\62\64\668:<>\2\2\2\u0135\2@\3\2\2\2\4D\3\2\2\2\6O")
-        buf.write("\3\2\2\2\bQ\3\2\2\2\n\\\3\2\2\2\fn\3\2\2\2\16p\3\2\2\2")
-        buf.write("\20w\3\2\2\2\22\177\3\2\2\2\24\u0087\3\2\2\2\26\u0095")
-        buf.write("\3\2\2\2\30\u0097\3\2\2\2\32\u00a2\3\2\2\2\34\u00b5\3")
-        buf.write("\2\2\2\36\u00b7\3\2\2\2 \u00ba\3\2\2\2\"\u00c6\3\2\2\2")
-        buf.write("$\u00d4\3\2\2\2&\u00d6\3\2\2\2(\u00df\3\2\2\2*\u00eb\3")
-        buf.write("\2\2\2,\u00f2\3\2\2\2.\u00fa\3\2\2\2\60\u00ff\3\2\2\2")
-        buf.write("\62\u0103\3\2\2\2\64\u010b\3\2\2\2\66\u0113\3\2\2\28\u011c")
-        buf.write("\3\2\2\2:\u0124\3\2\2\2<\u0126\3\2\2\2>\u012c\3\2\2\2")
-        buf.write("@A\7\3\2\2AB\5\4\3\2BC\7\4\2\2C\3\3\2\2\2DE\b\3\1\2EF")
-        buf.write("\5\6\4\2FL\3\2\2\2GH\f\4\2\2HI\7\30\2\2IK\5\4\3\5JG\3")
-        buf.write("\2\2\2KN\3\2\2\2LJ\3\2\2\2LM\3\2\2\2M\5\3\2\2\2NL\3\2")
-        buf.write("\2\2OP\5\b\5\2P\7\3\2\2\2QR\b\5\1\2RS\5\n\6\2SY\3\2\2")
-        buf.write("\2TU\f\4\2\2UV\7\31\2\2VX\5\b\5\5WT\3\2\2\2X[\3\2\2\2")
-        buf.write("YW\3\2\2\2YZ\3\2\2\2Z\t\3\2\2\2[Y\3\2\2\2\\]\b\6\1\2]")
-        buf.write("^\5\f\7\2^d\3\2\2\2_`\f\4\2\2`a\7\32\2\2ac\5\n\6\5b_\3")
-        buf.write("\2\2\2cf\3\2\2\2db\3\2\2\2de\3\2\2\2e\13\3\2\2\2fd\3\2")
-        buf.write("\2\2gh\7\31\2\2ho\5\f\7\2ik\5\16\b\2ji\3\2\2\2kl\3\2\2")
-        buf.write("\2lj\3\2\2\2lm\3\2\2\2mo\3\2\2\2ng\3\2\2\2nj\3\2\2\2o")
-        buf.write("\r\3\2\2\2pt\5 \21\2qs\7\33\2\2rq\3\2\2\2sv\3\2\2\2tr")
-        buf.write("\3\2\2\2tu\3\2\2\2u\17\3\2\2\2vt\3\2\2\2w}\7\20\2\2x~")
-        buf.write("\5> \2yz\7\7\2\2z{\5(\25\2{|\7\b\2\2|~\3\2\2\2}x\3\2\2")
-        buf.write("\2}y\3\2\2\2~\21\3\2\2\2\177\u0085\7\20\2\2\u0080\u0086")
-        buf.write("\5> \2\u0081\u0082\7\7\2\2\u0082\u0083\5\6\4\2\u0083\u0084")
-        buf.write("\7\b\2\2\u0084\u0086\3\2\2\2\u0085\u0080\3\2\2\2\u0085")
-        buf.write("\u0081\3\2\2\2\u0086\23\3\2\2\2\u0087\u008d\7\21\2\2\u0088")
-        buf.write("\u008e\5 \21\2\u0089\u008a\7\7\2\2\u008a\u008b\5\6\4\2")
-        buf.write("\u008b\u008c\7\b\2\2\u008c\u008e\3\2\2\2\u008d\u0088\3")
-        buf.write("\2\2\2\u008d\u0089\3\2\2\2\u008e\25\3\2\2\2\u008f\u0090")
-        buf.write("\5\22\n\2\u0090\u0091\5\24\13\2\u0091\u0096\3\2\2\2\u0092")
-        buf.write("\u0093\5\24\13\2\u0093\u0094\5\22\n\2\u0094\u0096\3\2")
-        buf.write("\2\2\u0095\u008f\3\2\2\2\u0095\u0092\3\2\2\2\u0096\27")
-        buf.write("\3\2\2\2\u0097\u00a0\7\20\2\2\u0098\u00a1\5> \2\u0099")
-        buf.write("\u009c\7\7\2\2\u009a\u009d\5\6\4\2\u009b\u009d\5\4\3\2")
-        buf.write("\u009c\u009a\3\2\2\2\u009c\u009b\3\2\2\2\u009d\u009e\3")
-        buf.write("\2\2\2\u009e\u009f\7\b\2\2\u009f\u00a1\3\2\2\2\u00a0\u0098")
-        buf.write("\3\2\2\2\u00a0\u0099\3\2\2\2\u00a1\31\3\2\2\2\u00a2\u00ab")
-        buf.write("\7\21\2\2\u00a3\u00ac\5 \21\2\u00a4\u00a7\7\7\2\2\u00a5")
-        buf.write("\u00a8\5\6\4\2\u00a6\u00a8\5\4\3\2\u00a7\u00a5\3\2\2\2")
-        buf.write("\u00a7\u00a6\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\u00aa\7")
-        buf.write("\b\2\2\u00aa\u00ac\3\2\2\2\u00ab\u00a3\3\2\2\2\u00ab\u00a4")
-        buf.write("\3\2\2\2\u00ac\33\3\2\2\2\u00ad\u00b6\5\30\r\2\u00ae\u00b6")
-        buf.write("\5\32\16\2\u00af\u00b0\5\30\r\2\u00b0\u00b1\5\24\13\2")
-        buf.write("\u00b1\u00b6\3\2\2\2\u00b2\u00b3\5\24\13\2\u00b3\u00b4")
-        buf.write("\5\30\r\2\u00b4\u00b6\3\2\2\2\u00b5\u00ad\3\2\2\2\u00b5")
-        buf.write("\u00ae\3\2\2\2\u00b5\u00af\3\2\2\2\u00b5\u00b2\3\2\2\2")
-        buf.write("\u00b6\35\3\2\2\2\u00b7\u00b8\7\16\2\2\u00b8\u00b9\5\34")
-        buf.write("\17\2\u00b9\37\3\2\2\2\u00ba\u00bc\5\"\22\2\u00bb\u00bd")
-        buf.write("\5\24\13\2\u00bc\u00bb\3\2\2\2\u00bc\u00bd\3\2\2\2\u00bd")
-        buf.write("!\3\2\2\2\u00be\u00c7\5$\23\2\u00bf\u00c7\5&\24\2\u00c0")
-        buf.write("\u00c7\5,\27\2\u00c1\u00c7\5.\30\2\u00c2\u00c7\5\60\31")
-        buf.write("\2\u00c3\u00c7\5\62\32\2\u00c4\u00c7\5\64\33\2\u00c5\u00c7")
-        buf.write("\5> \2\u00c6\u00be\3\2\2\2\u00c6\u00bf\3\2\2\2\u00c6\u00c0")
-        buf.write("\3\2\2\2\u00c6\u00c1\3\2\2\2\u00c6\u00c2\3\2\2\2\u00c6")
-        buf.write("\u00c3\3\2\2\2\u00c6\u00c4\3\2\2\2\u00c6\u00c5\3\2\2\2")
-        buf.write("\u00c7#\3\2\2\2\u00c8\u00c9\7\7\2\2\u00c9\u00ca\5\6\4")
-        buf.write("\2\u00ca\u00cb\7\b\2\2\u00cb\u00d5\3\2\2\2\u00cc\u00cd")
-        buf.write("\7\t\2\2\u00cd\u00ce\5\6\4\2\u00ce\u00cf\7\n\2\2\u00cf")
-        buf.write("\u00d5\3\2\2\2\u00d0\u00d1\7\13\2\2\u00d1\u00d2\5\6\4")
-        buf.write("\2\u00d2\u00d3\7\f\2\2\u00d3\u00d5\3\2\2\2\u00d4\u00c8")
-        buf.write("\3\2\2\2\u00d4\u00cc\3\2\2\2\u00d4\u00d0\3\2\2\2\u00d5")
-        buf.write("%\3\2\2\2\u00d6\u00d7\7\r\2\2\u00d7\u00d8\5\6\4\2\u00d8")
-        buf.write("\u00d9\7\r\2\2\u00d9\'\3\2\2\2\u00da\u00db\5\4\3\2\u00db")
-        buf.write("\u00dc\7\23\2\2\u00dc\u00de\3\2\2\2\u00dd\u00da\3\2\2")
-        buf.write("\2\u00de\u00e1\3\2\2\2\u00df\u00dd\3\2\2\2\u00df\u00e0")
-        buf.write("\3\2\2\2\u00e0\u00e2\3\2\2\2\u00e1\u00df\3\2\2\2\u00e2")
-        buf.write("\u00e4\5\4\3\2\u00e3\u00e5\7\23\2\2\u00e4\u00e3\3\2\2")
-        buf.write("\2\u00e4\u00e5\3\2\2\2\u00e5)\3\2\2\2\u00e6\u00e7\5(\25")
-        buf.write("\2\u00e7\u00e8\7\22\2\2\u00e8\u00ea\3\2\2\2\u00e9\u00e6")
-        buf.write("\3\2\2\2\u00ea\u00ed\3\2\2\2\u00eb\u00e9\3\2\2\2\u00eb")
-        buf.write("\u00ec\3\2\2\2\u00ec\u00ee\3\2\2\2\u00ed\u00eb\3\2\2\2")
-        buf.write("\u00ee\u00f0\5(\25\2\u00ef\u00f1\7\22\2\2\u00f0\u00ef")
-        buf.write("\3\2\2\2\u00f0\u00f1\3\2\2\2\u00f1+\3\2\2\2\u00f2\u00f8")
-        buf.write("\7\36\2\2\u00f3\u00f4\7\7\2\2\u00f4\u00f5\5(\25\2\u00f5")
-        buf.write("\u00f6\7\b\2\2\u00f6\u00f9\3\2\2\2\u00f7\u00f9\5\n\6\2")
-        buf.write("\u00f8\u00f3\3\2\2\2\u00f8\u00f7\3\2\2\2\u00f9-\3\2\2")
-        buf.write("\2\u00fa\u00fb\7\37\2\2\u00fb\u00fc\7\7\2\2\u00fc\u00fd")
-        buf.write("\5*\26\2\u00fd\u00fe\7\b\2\2\u00fe/\3\2\2\2\u00ff\u0100")
-        buf.write("\7\35\2\2\u0100\u0101\5\34\17\2\u0101\u0102\5\n\6\2\u0102")
-        buf.write("\61\3\2\2\2\u0103\u0104\7 \2\2\u0104\u0105\7\7\2\2\u0105")
-        buf.write("\u0106\5<\37\2\u0106\u0107\7\27\2\2\u0107\u0108\5\6\4")
-        buf.write("\2\u0108\u0109\7\b\2\2\u0109\u010a\5\b\5\2\u010a\63\3")
-        buf.write("\2\2\2\u010b\u010d\7!\2\2\u010c\u010e\5\26\f\2\u010d\u010c")
-        buf.write("\3\2\2\2\u010d\u010e\3\2\2\2\u010e\u010f\3\2\2\2\u010f")
-        buf.write("\u0110\5\b\5\2\u0110\u0111\7\"\2\2\u0111\u0112\5<\37\2")
-        buf.write("\u0112\65\3\2\2\2\u0113\u0117\7\17\2\2\u0114\u0116\13")
-        buf.write("\2\2\2\u0115\u0114\3\2\2\2\u0116\u0119\3\2\2\2\u0117\u0118")
-        buf.write("\3\2\2\2\u0117\u0115\3\2\2\2\u0118\u011a\3\2\2\2\u0119")
-        buf.write("\u0117\3\2\2\2\u011a\u011b\7\17\2\2\u011b\67\3\2\2\2\u011c")
-        buf.write("\u011d\7\34\2\2\u011d\u011e\7\7\2\2\u011e\u011f\5\6\4")
-        buf.write("\2\u011f\u0120\7\b\2\2\u01209\3\2\2\2\u0121\u0125\7$\2")
-        buf.write("\2\u0122\u0125\5\66\34\2\u0123\u0125\58\35\2\u0124\u0121")
-        buf.write("\3\2\2\2\u0124\u0122\3\2\2\2\u0124\u0123\3\2\2\2\u0125")
-        buf.write(";\3\2\2\2\u0126\u0128\5:\36\2\u0127\u0129\5\20\t\2\u0128")
-        buf.write("\u0127\3\2\2\2\u0128\u0129\3\2\2\2\u0129=\3\2\2\2\u012a")
-        buf.write("\u012d\7%\2\2\u012b\u012d\5<\37\2\u012c\u012a\3\2\2\2")
-        buf.write("\u012c\u012b\3\2\2\2\u012d?\3\2\2\2\36LYdlnt}\u0085\u008d")
-        buf.write("\u0095\u009c\u00a0\u00a7\u00ab\u00b5\u00bc\u00c6\u00d4")
-        buf.write("\u00df\u00e4\u00eb\u00f0\u00f8\u010d\u0117\u0124\u0128")
-        buf.write("\u012c")
+        buf.write("\4\37\t\37\4 \t \4!\t!\4\"\t\"\3\2\3\2\3\2\3\2\3\3\3\3")
+        buf.write("\3\3\3\3\3\3\3\3\7\3O\n\3\f\3\16\3R\13\3\3\4\3\4\3\5\3")
+        buf.write("\5\3\5\3\5\3\5\3\5\7\5\\\n\5\f\5\16\5_\13\5\3\6\3\6\3")
+        buf.write("\6\3\6\3\6\3\6\7\6g\n\6\f\6\16\6j\13\6\3\7\3\7\3\7\6\7")
+        buf.write("o\n\7\r\7\16\7p\5\7s\n\7\3\b\3\b\3\b\3\b\3\b\3\b\5\b{")
+        buf.write("\n\b\3\t\3\t\3\t\3\t\3\t\3\t\5\t\u0083\n\t\3\n\3\n\3\n")
+        buf.write("\3\n\3\n\3\n\5\n\u008b\n\n\3\13\3\13\3\13\3\13\3\13\3")
+        buf.write("\13\5\13\u0093\n\13\3\f\3\f\3\f\3\f\3\f\5\f\u009a\n\f")
+        buf.write("\3\f\3\f\5\f\u009e\n\f\3\r\3\r\3\r\3\r\3\r\5\r\u00a5\n")
+        buf.write("\r\3\r\3\r\5\r\u00a9\n\r\3\16\3\16\3\16\3\16\3\16\3\16")
+        buf.write("\3\16\3\16\5\16\u00b3\n\16\3\17\3\17\3\17\3\20\3\20\3")
+        buf.write("\21\3\21\3\21\5\21\u00bd\n\21\3\22\3\22\7\22\u00c1\n\22")
+        buf.write("\f\22\16\22\u00c4\13\22\3\23\3\23\5\23\u00c8\n\23\3\24")
+        buf.write("\3\24\3\24\3\24\3\24\3\24\3\24\3\24\5\24\u00d2\n\24\3")
+        buf.write("\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25")
+        buf.write("\3\25\5\25\u00e0\n\25\3\26\3\26\3\26\3\26\3\27\3\27\3")
+        buf.write("\27\7\27\u00e9\n\27\f\27\16\27\u00ec\13\27\3\27\3\27\5")
+        buf.write("\27\u00f0\n\27\3\30\3\30\3\30\7\30\u00f5\n\30\f\30\16")
+        buf.write("\30\u00f8\13\30\3\30\3\30\5\30\u00fc\n\30\3\31\3\31\3")
+        buf.write("\31\3\31\3\31\3\31\5\31\u0104\n\31\3\32\3\32\3\32\3\32")
+        buf.write("\3\32\3\33\3\33\3\33\3\33\3\34\3\34\3\34\3\34\3\34\3\34")
+        buf.write("\3\34\3\34\3\35\3\35\5\35\u0119\n\35\3\35\3\35\3\35\3")
+        buf.write("\35\3\36\3\36\7\36\u0121\n\36\f\36\16\36\u0124\13\36\3")
+        buf.write("\36\3\36\3\37\3\37\3\37\3\37\3\37\3 \3 \3 \5 \u0130\n")
+        buf.write(" \3!\3!\5!\u0134\n!\3\"\3\"\5\"\u0138\n\"\3\"\3\u0122")
+        buf.write("\5\4\b\n#\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&")
+        buf.write("(*,.\60\62\64\668:<>@B\2\3\3\2\3\6\2\u0140\2D\3\2\2\2")
+        buf.write("\4H\3\2\2\2\6S\3\2\2\2\bU\3\2\2\2\n`\3\2\2\2\fr\3\2\2")
+        buf.write("\2\16t\3\2\2\2\20|\3\2\2\2\22\u0084\3\2\2\2\24\u0092\3")
+        buf.write("\2\2\2\26\u0094\3\2\2\2\30\u009f\3\2\2\2\32\u00b2\3\2")
+        buf.write("\2\2\34\u00b4\3\2\2\2\36\u00b7\3\2\2\2 \u00bc\3\2\2\2")
+        buf.write("\"\u00be\3\2\2\2$\u00c5\3\2\2\2&\u00d1\3\2\2\2(\u00df")
+        buf.write("\3\2\2\2*\u00e1\3\2\2\2,\u00ea\3\2\2\2.\u00f6\3\2\2\2")
+        buf.write("\60\u00fd\3\2\2\2\62\u0105\3\2\2\2\64\u010a\3\2\2\2\66")
+        buf.write("\u010e\3\2\2\28\u0116\3\2\2\2:\u011e\3\2\2\2<\u0127\3")
+        buf.write("\2\2\2>\u012f\3\2\2\2@\u0131\3\2\2\2B\u0137\3\2\2\2DE")
+        buf.write("\7\7\2\2EF\5\4\3\2FG\7\b\2\2G\3\3\2\2\2HI\b\3\1\2IJ\5")
+        buf.write("\6\4\2JP\3\2\2\2KL\f\4\2\2LM\7\32\2\2MO\5\4\3\5NK\3\2")
+        buf.write("\2\2OR\3\2\2\2PN\3\2\2\2PQ\3\2\2\2Q\5\3\2\2\2RP\3\2\2")
+        buf.write("\2ST\5\b\5\2T\7\3\2\2\2UV\b\5\1\2VW\5\n\6\2W]\3\2\2\2")
+        buf.write("XY\f\4\2\2YZ\7\33\2\2Z\\\5\b\5\5[X\3\2\2\2\\_\3\2\2\2")
+        buf.write("][\3\2\2\2]^\3\2\2\2^\t\3\2\2\2_]\3\2\2\2`a\b\6\1\2ab")
+        buf.write("\5\f\7\2bh\3\2\2\2cd\f\4\2\2de\7\34\2\2eg\5\n\6\5fc\3")
+        buf.write("\2\2\2gj\3\2\2\2hf\3\2\2\2hi\3\2\2\2i\13\3\2\2\2jh\3\2")
+        buf.write("\2\2kl\7\33\2\2ls\5\f\7\2mo\5\"\22\2nm\3\2\2\2op\3\2\2")
+        buf.write("\2pn\3\2\2\2pq\3\2\2\2qs\3\2\2\2rk\3\2\2\2rn\3\2\2\2s")
+        buf.write("\r\3\2\2\2tz\7\24\2\2u{\5B\"\2vw\7\13\2\2wx\5,\27\2xy")
+        buf.write("\7\f\2\2y{\3\2\2\2zu\3\2\2\2zv\3\2\2\2{\17\3\2\2\2|\u0082")
+        buf.write("\7\24\2\2}\u0083\5B\"\2~\177\7\13\2\2\177\u0080\5\6\4")
+        buf.write("\2\u0080\u0081\7\f\2\2\u0081\u0083\3\2\2\2\u0082}\3\2")
+        buf.write("\2\2\u0082~\3\2\2\2\u0083\21\3\2\2\2\u0084\u008a\7\25")
+        buf.write("\2\2\u0085\u008b\5$\23\2\u0086\u0087\7\13\2\2\u0087\u0088")
+        buf.write("\5\6\4\2\u0088\u0089\7\f\2\2\u0089\u008b\3\2\2\2\u008a")
+        buf.write("\u0085\3\2\2\2\u008a\u0086\3\2\2\2\u008b\23\3\2\2\2\u008c")
+        buf.write("\u008d\5\20\t\2\u008d\u008e\5\22\n\2\u008e\u0093\3\2\2")
+        buf.write("\2\u008f\u0090\5\22\n\2\u0090\u0091\5\20\t\2\u0091\u0093")
+        buf.write("\3\2\2\2\u0092\u008c\3\2\2\2\u0092\u008f\3\2\2\2\u0093")
+        buf.write("\25\3\2\2\2\u0094\u009d\7\24\2\2\u0095\u009e\5B\"\2\u0096")
+        buf.write("\u0099\7\13\2\2\u0097\u009a\5\6\4\2\u0098\u009a\5\4\3")
+        buf.write("\2\u0099\u0097\3\2\2\2\u0099\u0098\3\2\2\2\u009a\u009b")
+        buf.write("\3\2\2\2\u009b\u009c\7\f\2\2\u009c\u009e\3\2\2\2\u009d")
+        buf.write("\u0095\3\2\2\2\u009d\u0096\3\2\2\2\u009e\27\3\2\2\2\u009f")
+        buf.write("\u00a8\7\25\2\2\u00a0\u00a9\5$\23\2\u00a1\u00a4\7\13\2")
+        buf.write("\2\u00a2\u00a5\5\6\4\2\u00a3\u00a5\5\4\3\2\u00a4\u00a2")
+        buf.write("\3\2\2\2\u00a4\u00a3\3\2\2\2\u00a5\u00a6\3\2\2\2\u00a6")
+        buf.write("\u00a7\7\f\2\2\u00a7\u00a9\3\2\2\2\u00a8\u00a0\3\2\2\2")
+        buf.write("\u00a8\u00a1\3\2\2\2\u00a9\31\3\2\2\2\u00aa\u00b3\5\26")
+        buf.write("\f\2\u00ab\u00b3\5\30\r\2\u00ac\u00ad\5\26\f\2\u00ad\u00ae")
+        buf.write("\5\22\n\2\u00ae\u00b3\3\2\2\2\u00af\u00b0\5\22\n\2\u00b0")
+        buf.write("\u00b1\5\26\f\2\u00b1\u00b3\3\2\2\2\u00b2\u00aa\3\2\2")
+        buf.write("\2\u00b2\u00ab\3\2\2\2\u00b2\u00ac\3\2\2\2\u00b2\u00af")
+        buf.write("\3\2\2\2\u00b3\33\3\2\2\2\u00b4\u00b5\7\22\2\2\u00b5\u00b6")
+        buf.write("\5\32\16\2\u00b6\35\3\2\2\2\u00b7\u00b8\t\2\2\2\u00b8")
+        buf.write("\37\3\2\2\2\u00b9\u00bd\7\35\2\2\u00ba\u00bd\5\36\20\2")
+        buf.write("\u00bb\u00bd\5\34\17\2\u00bc\u00b9\3\2\2\2\u00bc\u00ba")
+        buf.write("\3\2\2\2\u00bc\u00bb\3\2\2\2\u00bd!\3\2\2\2\u00be\u00c2")
+        buf.write("\5$\23\2\u00bf\u00c1\5 \21\2\u00c0\u00bf\3\2\2\2\u00c1")
+        buf.write("\u00c4\3\2\2\2\u00c2\u00c0\3\2\2\2\u00c2\u00c3\3\2\2\2")
+        buf.write("\u00c3#\3\2\2\2\u00c4\u00c2\3\2\2\2\u00c5\u00c7\5&\24")
+        buf.write("\2\u00c6\u00c8\5\22\n\2\u00c7\u00c6\3\2\2\2\u00c7\u00c8")
+        buf.write("\3\2\2\2\u00c8%\3\2\2\2\u00c9\u00d2\5(\25\2\u00ca\u00d2")
+        buf.write("\5*\26\2\u00cb\u00d2\5\60\31\2\u00cc\u00d2\5\62\32\2\u00cd")
+        buf.write("\u00d2\5\64\33\2\u00ce\u00d2\5\66\34\2\u00cf\u00d2\58")
+        buf.write("\35\2\u00d0\u00d2\5B\"\2\u00d1\u00c9\3\2\2\2\u00d1\u00ca")
+        buf.write("\3\2\2\2\u00d1\u00cb\3\2\2\2\u00d1\u00cc\3\2\2\2\u00d1")
+        buf.write("\u00cd\3\2\2\2\u00d1\u00ce\3\2\2\2\u00d1\u00cf\3\2\2\2")
+        buf.write("\u00d1\u00d0\3\2\2\2\u00d2\'\3\2\2\2\u00d3\u00d4\7\13")
+        buf.write("\2\2\u00d4\u00d5\5\6\4\2\u00d5\u00d6\7\f\2\2\u00d6\u00e0")
+        buf.write("\3\2\2\2\u00d7\u00d8\7\r\2\2\u00d8\u00d9\5\6\4\2\u00d9")
+        buf.write("\u00da\7\16\2\2\u00da\u00e0\3\2\2\2\u00db\u00dc\7\17\2")
+        buf.write("\2\u00dc\u00dd\5\6\4\2\u00dd\u00de\7\20\2\2\u00de\u00e0")
+        buf.write("\3\2\2\2\u00df\u00d3\3\2\2\2\u00df\u00d7\3\2\2\2\u00df")
+        buf.write("\u00db\3\2\2\2\u00e0)\3\2\2\2\u00e1\u00e2\7\21\2\2\u00e2")
+        buf.write("\u00e3\5\6\4\2\u00e3\u00e4\7\21\2\2\u00e4+\3\2\2\2\u00e5")
+        buf.write("\u00e6\5\4\3\2\u00e6\u00e7\7\27\2\2\u00e7\u00e9\3\2\2")
+        buf.write("\2\u00e8\u00e5\3\2\2\2\u00e9\u00ec\3\2\2\2\u00ea\u00e8")
+        buf.write("\3\2\2\2\u00ea\u00eb\3\2\2\2\u00eb\u00ed\3\2\2\2\u00ec")
+        buf.write("\u00ea\3\2\2\2\u00ed\u00ef\5\4\3\2\u00ee\u00f0\7\27\2")
+        buf.write("\2\u00ef\u00ee\3\2\2\2\u00ef\u00f0\3\2\2\2\u00f0-\3\2")
+        buf.write("\2\2\u00f1\u00f2\5,\27\2\u00f2\u00f3\7\26\2\2\u00f3\u00f5")
+        buf.write("\3\2\2\2\u00f4\u00f1\3\2\2\2\u00f5\u00f8\3\2\2\2\u00f6")
+        buf.write("\u00f4\3\2\2\2\u00f6\u00f7\3\2\2\2\u00f7\u00f9\3\2\2\2")
+        buf.write("\u00f8\u00f6\3\2\2\2\u00f9\u00fb\5,\27\2\u00fa\u00fc\7")
+        buf.write("\26\2\2\u00fb\u00fa\3\2\2\2\u00fb\u00fc\3\2\2\2\u00fc")
+        buf.write("/\3\2\2\2\u00fd\u0103\7 \2\2\u00fe\u00ff\7\13\2\2\u00ff")
+        buf.write("\u0100\5,\27\2\u0100\u0101\7\f\2\2\u0101\u0104\3\2\2\2")
+        buf.write("\u0102\u0104\5\n\6\2\u0103\u00fe\3\2\2\2\u0103\u0102\3")
+        buf.write("\2\2\2\u0104\61\3\2\2\2\u0105\u0106\7!\2\2\u0106\u0107")
+        buf.write("\7\13\2\2\u0107\u0108\5.\30\2\u0108\u0109\7\f\2\2\u0109")
+        buf.write("\63\3\2\2\2\u010a\u010b\7\37\2\2\u010b\u010c\5\32\16\2")
+        buf.write("\u010c\u010d\5\n\6\2\u010d\65\3\2\2\2\u010e\u010f\7\"")
+        buf.write("\2\2\u010f\u0110\7\13\2\2\u0110\u0111\5@!\2\u0111\u0112")
+        buf.write("\7\31\2\2\u0112\u0113\5\6\4\2\u0113\u0114\7\f\2\2\u0114")
+        buf.write("\u0115\5\b\5\2\u0115\67\3\2\2\2\u0116\u0118\7#\2\2\u0117")
+        buf.write("\u0119\5\24\13\2\u0118\u0117\3\2\2\2\u0118\u0119\3\2\2")
+        buf.write("\2\u0119\u011a\3\2\2\2\u011a\u011b\5\b\5\2\u011b\u011c")
+        buf.write("\7$\2\2\u011c\u011d\5@!\2\u011d9\3\2\2\2\u011e\u0122\7")
+        buf.write("\23\2\2\u011f\u0121\13\2\2\2\u0120\u011f\3\2\2\2\u0121")
+        buf.write("\u0124\3\2\2\2\u0122\u0123\3\2\2\2\u0122\u0120\3\2\2\2")
+        buf.write("\u0123\u0125\3\2\2\2\u0124\u0122\3\2\2\2\u0125\u0126\7")
+        buf.write("\23\2\2\u0126;\3\2\2\2\u0127\u0128\7\36\2\2\u0128\u0129")
+        buf.write("\7\13\2\2\u0129\u012a\5\6\4\2\u012a\u012b\7\f\2\2\u012b")
+        buf.write("=\3\2\2\2\u012c\u0130\7&\2\2\u012d\u0130\5:\36\2\u012e")
+        buf.write("\u0130\5<\37\2\u012f\u012c\3\2\2\2\u012f\u012d\3\2\2\2")
+        buf.write("\u012f\u012e\3\2\2\2\u0130?\3\2\2\2\u0131\u0133\5> \2")
+        buf.write("\u0132\u0134\5\16\b\2\u0133\u0132\3\2\2\2\u0133\u0134")
+        buf.write("\3\2\2\2\u0134A\3\2\2\2\u0135\u0138\7\'\2\2\u0136\u0138")
+        buf.write("\5@!\2\u0137\u0135\3\2\2\2\u0137\u0136\3\2\2\2\u0138C")
+        buf.write("\3\2\2\2\37P]hprz\u0082\u008a\u0092\u0099\u009d\u00a4")
+        buf.write("\u00a8\u00b2\u00bc\u00c2\u00c7\u00d1\u00df\u00ea\u00ef")
+        buf.write("\u00f6\u00fb\u0103\u0118\u0122\u012f\u0133\u0137")
         return buf.getvalue()
 
 
@@ -152,22 +158,24 @@ class TypstGrammarParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'<typst_math_start>'", "'<typst_math_end>'", 
-                     "<INVALID>", "<INVALID>", "'('", "')'", "'{'", "'}'", 
-                     "'['", "']'", "'|'", "<INVALID>", "'\"'", "'_'", "'^'", 
-                     "';'", "','", "'.'", "'!'", "<INVALID>", "'->'", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "<INVALID>", "'<typst_math_accent>'", 
-                     "'<typst_math_reduce>'", "'<typst_math_func>'", "'mat'", 
-                     "'lim'", "'integral'", "'dif'", "'diff'" ]
+    literalNames = [ "<INVALID>", "'^T'", "'^top'", "'^(T)'", "'^(top)'", 
+                     "'<typst_math_start>'", "'<typst_math_end>'", "<INVALID>", 
+                     "<INVALID>", "'('", "')'", "'{'", "'}'", "'['", "']'", 
+                     "'|'", "<INVALID>", "'\"'", "'_'", "'^'", "';'", "','", 
+                     "'.'", "'->'", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "'<typst_math_accent>'", "'<typst_math_reduce>'", 
+                     "'<typst_math_func>'", "'mat'", "'lim'", "'integral'", 
+                     "'dif'", "'diff'" ]
 
-    symbolicNames = [ "<INVALID>", "MATH_START", "MATH_END", "WS", "USELESS_SIGN", 
+    symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                      "<INVALID>", "MATH_START", "MATH_END", "WS", "USELESS_SIGN", 
                       "L_PAREN", "R_PAREN", "L_BRACE", "R_BRACE", "L_BRACKET", 
                       "R_BRACKET", "BAR", "EVAL_BAR", "QUOTE", "UNDERSCORE", 
-                      "CARET", "SEMICOLON", "COMMA", "PERIOD", "BANG", "TRANSPOSE", 
-                      "LIM_APPROACH_SYM", "RELATION_OP", "ADDITIVE_OP", 
-                      "MP_OP", "POSTFIX_OP", "ACCENT_OP", "REDUCE_OP", "FUNC", 
-                      "FUNC_MAT", "FUNC_LIM", "FUNC_INTEGRAL", "DIF", "DIFF", 
-                      "SYMBOL_BASE", "NUMBER", "ID" ]
+                      "CARET", "SEMICOLON", "COMMA", "PERIOD", "LIM_APPROACH_SYM", 
+                      "RELATION_OP", "ADDITIVE_OP", "MP_OP", "POSTFIX_OP", 
+                      "ACCENT_OP", "REDUCE_OP", "FUNC", "FUNC_MAT", "FUNC_LIM", 
+                      "FUNC_INTEGRAL", "DIF", "DIFF", "SYMBOL_BASE", "NUMBER", 
+                      "ID" ]
 
     RULE_math = 0
     RULE_relation = 1
@@ -175,76 +183,81 @@ class TypstGrammarParser ( Parser ):
     RULE_additive = 3
     RULE_mp = 4
     RULE_unary = 5
-    RULE_postfix = 6
-    RULE_subargs = 7
-    RULE_subexpr = 8
-    RULE_supexpr = 9
-    RULE_subsupexpr = 10
-    RULE_subassign = 11
-    RULE_supassign = 12
-    RULE_subsupassign = 13
-    RULE_eval_at = 14
-    RULE_exp = 15
-    RULE_comp = 16
-    RULE_group = 17
-    RULE_abs_group = 18
-    RULE_args = 19
-    RULE_mat_args = 20
-    RULE_func = 21
-    RULE_matrix = 22
-    RULE_reduceit = 23
-    RULE_lim = 24
-    RULE_integral = 25
-    RULE_text = 26
-    RULE_accent = 27
-    RULE_symbol_base = 28
-    RULE_symbol = 29
-    RULE_atom = 30
+    RULE_subargs = 6
+    RULE_subexpr = 7
+    RULE_supexpr = 8
+    RULE_subsupexpr = 9
+    RULE_subassign = 10
+    RULE_supassign = 11
+    RULE_subsupassign = 12
+    RULE_eval_at = 13
+    RULE_transpose = 14
+    RULE_postfix_op = 15
+    RULE_postfix = 16
+    RULE_exp = 17
+    RULE_comp = 18
+    RULE_group = 19
+    RULE_abs_group = 20
+    RULE_args = 21
+    RULE_mat_args = 22
+    RULE_func = 23
+    RULE_matrix = 24
+    RULE_reduceit = 25
+    RULE_lim = 26
+    RULE_integral = 27
+    RULE_text = 28
+    RULE_accent = 29
+    RULE_symbol_base = 30
+    RULE_symbol = 31
+    RULE_atom = 32
 
     ruleNames =  [ "math", "relation", "expr", "additive", "mp", "unary", 
-                   "postfix", "subargs", "subexpr", "supexpr", "subsupexpr", 
-                   "subassign", "supassign", "subsupassign", "eval_at", 
-                   "exp", "comp", "group", "abs_group", "args", "mat_args", 
-                   "func", "matrix", "reduceit", "lim", "integral", "text", 
-                   "accent", "symbol_base", "symbol", "atom" ]
+                   "subargs", "subexpr", "supexpr", "subsupexpr", "subassign", 
+                   "supassign", "subsupassign", "eval_at", "transpose", 
+                   "postfix_op", "postfix", "exp", "comp", "group", "abs_group", 
+                   "args", "mat_args", "func", "matrix", "reduceit", "lim", 
+                   "integral", "text", "accent", "symbol_base", "symbol", 
+                   "atom" ]
 
     EOF = Token.EOF
-    MATH_START=1
-    MATH_END=2
-    WS=3
-    USELESS_SIGN=4
-    L_PAREN=5
-    R_PAREN=6
-    L_BRACE=7
-    R_BRACE=8
-    L_BRACKET=9
-    R_BRACKET=10
-    BAR=11
-    EVAL_BAR=12
-    QUOTE=13
-    UNDERSCORE=14
-    CARET=15
-    SEMICOLON=16
-    COMMA=17
-    PERIOD=18
-    BANG=19
-    TRANSPOSE=20
-    LIM_APPROACH_SYM=21
-    RELATION_OP=22
-    ADDITIVE_OP=23
-    MP_OP=24
-    POSTFIX_OP=25
-    ACCENT_OP=26
-    REDUCE_OP=27
-    FUNC=28
-    FUNC_MAT=29
-    FUNC_LIM=30
-    FUNC_INTEGRAL=31
-    DIF=32
-    DIFF=33
-    SYMBOL_BASE=34
-    NUMBER=35
-    ID=36
+    T__0=1
+    T__1=2
+    T__2=3
+    T__3=4
+    MATH_START=5
+    MATH_END=6
+    WS=7
+    USELESS_SIGN=8
+    L_PAREN=9
+    R_PAREN=10
+    L_BRACE=11
+    R_BRACE=12
+    L_BRACKET=13
+    R_BRACKET=14
+    BAR=15
+    EVAL_BAR=16
+    QUOTE=17
+    UNDERSCORE=18
+    CARET=19
+    SEMICOLON=20
+    COMMA=21
+    PERIOD=22
+    LIM_APPROACH_SYM=23
+    RELATION_OP=24
+    ADDITIVE_OP=25
+    MP_OP=26
+    POSTFIX_OP=27
+    ACCENT_OP=28
+    REDUCE_OP=29
+    FUNC=30
+    FUNC_MAT=31
+    FUNC_LIM=32
+    FUNC_INTEGRAL=33
+    DIF=34
+    DIFF=35
+    SYMBOL_BASE=36
+    NUMBER=37
+    ID=38
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -291,11 +304,11 @@ class TypstGrammarParser ( Parser ):
         self.enterRule(localctx, 0, self.RULE_math)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 62
+            self.state = 66
             self.match(TypstGrammarParser.MATH_START)
-            self.state = 63
+            self.state = 67
             self.relation(0)
-            self.state = 64
+            self.state = 68
             self.match(TypstGrammarParser.MATH_END)
         except RecognitionException as re:
             localctx.exception = re
@@ -348,10 +361,10 @@ class TypstGrammarParser ( Parser ):
         self.enterRecursionRule(localctx, 2, self.RULE_relation, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 67
+            self.state = 71
             self.expr()
             self._ctx.stop = self._input.LT(-1)
-            self.state = 74
+            self.state = 78
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,0,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -361,15 +374,15 @@ class TypstGrammarParser ( Parser ):
                     _prevctx = localctx
                     localctx = TypstGrammarParser.RelationContext(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_relation)
-                    self.state = 69
+                    self.state = 73
                     if not self.precpred(self._ctx, 2):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 70
+                    self.state = 74
                     self.match(TypstGrammarParser.RELATION_OP)
-                    self.state = 71
+                    self.state = 75
                     self.relation(3) 
-                self.state = 76
+                self.state = 80
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,0,self._ctx)
 
@@ -412,7 +425,7 @@ class TypstGrammarParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_expr)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 77
+            self.state = 81
             self.additive(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -465,10 +478,10 @@ class TypstGrammarParser ( Parser ):
         self.enterRecursionRule(localctx, 6, self.RULE_additive, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 80
+            self.state = 84
             self.mp(0)
             self._ctx.stop = self._input.LT(-1)
-            self.state = 87
+            self.state = 91
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,1,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -478,15 +491,15 @@ class TypstGrammarParser ( Parser ):
                     _prevctx = localctx
                     localctx = TypstGrammarParser.AdditiveContext(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_additive)
-                    self.state = 82
+                    self.state = 86
                     if not self.precpred(self._ctx, 2):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 83
+                    self.state = 87
                     self.match(TypstGrammarParser.ADDITIVE_OP)
-                    self.state = 84
+                    self.state = 88
                     self.additive(3) 
-                self.state = 89
+                self.state = 93
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,1,self._ctx)
 
@@ -541,10 +554,10 @@ class TypstGrammarParser ( Parser ):
         self.enterRecursionRule(localctx, 8, self.RULE_mp, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 91
+            self.state = 95
             self.unary()
             self._ctx.stop = self._input.LT(-1)
-            self.state = 98
+            self.state = 102
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -554,15 +567,15 @@ class TypstGrammarParser ( Parser ):
                     _prevctx = localctx
                     localctx = TypstGrammarParser.MpContext(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_mp)
-                    self.state = 93
+                    self.state = 97
                     if not self.precpred(self._ctx, 2):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 94
+                    self.state = 98
                     self.match(TypstGrammarParser.MP_OP)
-                    self.state = 95
+                    self.state = 99
                     self.mp(3) 
-                self.state = 100
+                self.state = 104
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
 
@@ -614,93 +627,35 @@ class TypstGrammarParser ( Parser ):
         localctx = TypstGrammarParser.UnaryContext(self, self._ctx, self.state)
         self.enterRule(localctx, 10, self.RULE_unary)
         try:
-            self.state = 108
+            self.state = 112
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.ADDITIVE_OP]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 101
+                self.state = 105
                 self.match(TypstGrammarParser.ADDITIVE_OP)
-                self.state = 102
+                self.state = 106
                 self.unary()
                 pass
             elif token in [TypstGrammarParser.L_PAREN, TypstGrammarParser.L_BRACE, TypstGrammarParser.L_BRACKET, TypstGrammarParser.BAR, TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.REDUCE_OP, TypstGrammarParser.FUNC, TypstGrammarParser.FUNC_MAT, TypstGrammarParser.FUNC_LIM, TypstGrammarParser.FUNC_INTEGRAL, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 104 
+                self.state = 108 
                 self._errHandler.sync(self)
                 _alt = 1
                 while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                     if _alt == 1:
-                        self.state = 103
+                        self.state = 107
                         self.postfix()
 
                     else:
                         raise NoViableAltException(self)
-                    self.state = 106 
+                    self.state = 110 
                     self._errHandler.sync(self)
                     _alt = self._interp.adaptivePredict(self._input,3,self._ctx)
 
                 pass
             else:
                 raise NoViableAltException(self)
-
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class PostfixContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def exp(self):
-            return self.getTypedRuleContext(TypstGrammarParser.ExpContext,0)
-
-
-        def POSTFIX_OP(self, i:int=None):
-            if i is None:
-                return self.getTokens(TypstGrammarParser.POSTFIX_OP)
-            else:
-                return self.getToken(TypstGrammarParser.POSTFIX_OP, i)
-
-        def getRuleIndex(self):
-            return TypstGrammarParser.RULE_postfix
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterPostfix" ):
-                listener.enterPostfix(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitPostfix" ):
-                listener.exitPostfix(self)
-
-
-
-
-    def postfix(self):
-
-        localctx = TypstGrammarParser.PostfixContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 12, self.RULE_postfix)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 110
-            self.exp()
-            self.state = 114
-            self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,5,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
-                    self.state = 111
-                    self.match(TypstGrammarParser.POSTFIX_OP) 
-                self.state = 116
-                self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,5,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -751,24 +706,24 @@ class TypstGrammarParser ( Parser ):
     def subargs(self):
 
         localctx = TypstGrammarParser.SubargsContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 14, self.RULE_subargs)
+        self.enterRule(localctx, 12, self.RULE_subargs)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 117
+            self.state = 114
             self.match(TypstGrammarParser.UNDERSCORE)
-            self.state = 123
+            self.state = 120
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
-                self.state = 118
+                self.state = 115
                 self.atom()
                 pass
             elif token in [TypstGrammarParser.L_PAREN]:
-                self.state = 119
+                self.state = 116
                 self.match(TypstGrammarParser.L_PAREN)
-                self.state = 120
+                self.state = 117
                 self.args()
-                self.state = 121
+                self.state = 118
                 self.match(TypstGrammarParser.R_PAREN)
                 pass
             else:
@@ -823,24 +778,24 @@ class TypstGrammarParser ( Parser ):
     def subexpr(self):
 
         localctx = TypstGrammarParser.SubexprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 16, self.RULE_subexpr)
+        self.enterRule(localctx, 14, self.RULE_subexpr)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 125
+            self.state = 122
             self.match(TypstGrammarParser.UNDERSCORE)
-            self.state = 131
+            self.state = 128
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
-                self.state = 126
+                self.state = 123
                 self.atom()
                 pass
             elif token in [TypstGrammarParser.L_PAREN]:
-                self.state = 127
+                self.state = 124
                 self.match(TypstGrammarParser.L_PAREN)
-                self.state = 128
+                self.state = 125
                 self.expr()
-                self.state = 129
+                self.state = 126
                 self.match(TypstGrammarParser.R_PAREN)
                 pass
             else:
@@ -895,25 +850,25 @@ class TypstGrammarParser ( Parser ):
     def supexpr(self):
 
         localctx = TypstGrammarParser.SupexprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 18, self.RULE_supexpr)
+        self.enterRule(localctx, 16, self.RULE_supexpr)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 133
+            self.state = 130
             self.match(TypstGrammarParser.CARET)
-            self.state = 139
+            self.state = 136
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
             if la_ == 1:
-                self.state = 134
+                self.state = 131
                 self.exp()
                 pass
 
             elif la_ == 2:
-                self.state = 135
+                self.state = 132
                 self.match(TypstGrammarParser.L_PAREN)
-                self.state = 136
+                self.state = 133
                 self.expr()
-                self.state = 137
+                self.state = 134
                 self.match(TypstGrammarParser.R_PAREN)
                 pass
 
@@ -958,23 +913,23 @@ class TypstGrammarParser ( Parser ):
     def subsupexpr(self):
 
         localctx = TypstGrammarParser.SubsupexprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 20, self.RULE_subsupexpr)
+        self.enterRule(localctx, 18, self.RULE_subsupexpr)
         try:
-            self.state = 147
+            self.state = 144
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.UNDERSCORE]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 141
+                self.state = 138
                 self.subexpr()
-                self.state = 142
+                self.state = 139
                 self.supexpr()
                 pass
             elif token in [TypstGrammarParser.CARET]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 144
+                self.state = 141
                 self.supexpr()
-                self.state = 145
+                self.state = 142
                 self.subexpr()
                 pass
             else:
@@ -1033,36 +988,36 @@ class TypstGrammarParser ( Parser ):
     def subassign(self):
 
         localctx = TypstGrammarParser.SubassignContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 22, self.RULE_subassign)
+        self.enterRule(localctx, 20, self.RULE_subassign)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 149
+            self.state = 146
             self.match(TypstGrammarParser.UNDERSCORE)
-            self.state = 158
+            self.state = 155
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
-                self.state = 150
+                self.state = 147
                 self.atom()
                 pass
             elif token in [TypstGrammarParser.L_PAREN]:
-                self.state = 151
+                self.state = 148
                 self.match(TypstGrammarParser.L_PAREN)
-                self.state = 154
+                self.state = 151
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input,9,self._ctx)
                 if la_ == 1:
-                    self.state = 152
+                    self.state = 149
                     self.expr()
                     pass
 
                 elif la_ == 2:
-                    self.state = 153
+                    self.state = 150
                     self.relation(0)
                     pass
 
 
-                self.state = 156
+                self.state = 153
                 self.match(TypstGrammarParser.R_PAREN)
                 pass
             else:
@@ -1121,37 +1076,37 @@ class TypstGrammarParser ( Parser ):
     def supassign(self):
 
         localctx = TypstGrammarParser.SupassignContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 24, self.RULE_supassign)
+        self.enterRule(localctx, 22, self.RULE_supassign)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 160
+            self.state = 157
             self.match(TypstGrammarParser.CARET)
-            self.state = 169
+            self.state = 166
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,12,self._ctx)
             if la_ == 1:
-                self.state = 161
+                self.state = 158
                 self.exp()
                 pass
 
             elif la_ == 2:
-                self.state = 162
+                self.state = 159
                 self.match(TypstGrammarParser.L_PAREN)
-                self.state = 165
+                self.state = 162
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,12,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input,11,self._ctx)
                 if la_ == 1:
-                    self.state = 163
+                    self.state = 160
                     self.expr()
                     pass
 
                 elif la_ == 2:
-                    self.state = 164
+                    self.state = 161
                     self.relation(0)
                     pass
 
 
-                self.state = 167
+                self.state = 164
                 self.match(TypstGrammarParser.R_PAREN)
                 pass
 
@@ -1200,36 +1155,36 @@ class TypstGrammarParser ( Parser ):
     def subsupassign(self):
 
         localctx = TypstGrammarParser.SubsupassignContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 26, self.RULE_subsupassign)
+        self.enterRule(localctx, 24, self.RULE_subsupassign)
         try:
-            self.state = 179
+            self.state = 176
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,14,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 171
+                self.state = 168
                 self.subassign()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 172
+                self.state = 169
                 self.supassign()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 173
+                self.state = 170
                 self.subassign()
-                self.state = 174
+                self.state = 171
                 self.supexpr()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 176
+                self.state = 173
                 self.supexpr()
-                self.state = 177
+                self.state = 174
                 self.subassign()
                 pass
 
@@ -1273,13 +1228,182 @@ class TypstGrammarParser ( Parser ):
     def eval_at(self):
 
         localctx = TypstGrammarParser.Eval_atContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 28, self.RULE_eval_at)
+        self.enterRule(localctx, 26, self.RULE_eval_at)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 178
+            self.match(TypstGrammarParser.EVAL_BAR)
+            self.state = 179
+            self.subsupassign()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class TransposeContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+
+        def getRuleIndex(self):
+            return TypstGrammarParser.RULE_transpose
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterTranspose" ):
+                listener.enterTranspose(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitTranspose" ):
+                listener.exitTranspose(self)
+
+
+
+
+    def transpose(self):
+
+        localctx = TypstGrammarParser.TransposeContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 28, self.RULE_transpose)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 181
-            self.match(TypstGrammarParser.EVAL_BAR)
-            self.state = 182
-            self.subsupassign()
+            _la = self._input.LA(1)
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TypstGrammarParser.T__0) | (1 << TypstGrammarParser.T__1) | (1 << TypstGrammarParser.T__2) | (1 << TypstGrammarParser.T__3))) != 0)):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Postfix_opContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def POSTFIX_OP(self):
+            return self.getToken(TypstGrammarParser.POSTFIX_OP, 0)
+
+        def transpose(self):
+            return self.getTypedRuleContext(TypstGrammarParser.TransposeContext,0)
+
+
+        def eval_at(self):
+            return self.getTypedRuleContext(TypstGrammarParser.Eval_atContext,0)
+
+
+        def getRuleIndex(self):
+            return TypstGrammarParser.RULE_postfix_op
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterPostfix_op" ):
+                listener.enterPostfix_op(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitPostfix_op" ):
+                listener.exitPostfix_op(self)
+
+
+
+
+    def postfix_op(self):
+
+        localctx = TypstGrammarParser.Postfix_opContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 30, self.RULE_postfix_op)
+        try:
+            self.state = 186
+            self._errHandler.sync(self)
+            token = self._input.LA(1)
+            if token in [TypstGrammarParser.POSTFIX_OP]:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 183
+                self.match(TypstGrammarParser.POSTFIX_OP)
+                pass
+            elif token in [TypstGrammarParser.T__0, TypstGrammarParser.T__1, TypstGrammarParser.T__2, TypstGrammarParser.T__3]:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 184
+                self.transpose()
+                pass
+            elif token in [TypstGrammarParser.EVAL_BAR]:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 185
+                self.eval_at()
+                pass
+            else:
+                raise NoViableAltException(self)
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class PostfixContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def exp(self):
+            return self.getTypedRuleContext(TypstGrammarParser.ExpContext,0)
+
+
+        def postfix_op(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(TypstGrammarParser.Postfix_opContext)
+            else:
+                return self.getTypedRuleContext(TypstGrammarParser.Postfix_opContext,i)
+
+
+        def getRuleIndex(self):
+            return TypstGrammarParser.RULE_postfix
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterPostfix" ):
+                listener.enterPostfix(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitPostfix" ):
+                listener.exitPostfix(self)
+
+
+
+
+    def postfix(self):
+
+        localctx = TypstGrammarParser.PostfixContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 32, self.RULE_postfix)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 188
+            self.exp()
+            self.state = 192
+            self._errHandler.sync(self)
+            _alt = self._interp.adaptivePredict(self._input,15,self._ctx)
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt==1:
+                    self.state = 189
+                    self.postfix_op() 
+                self.state = 194
+                self._errHandler.sync(self)
+                _alt = self._interp.adaptivePredict(self._input,15,self._ctx)
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1320,16 +1444,16 @@ class TypstGrammarParser ( Parser ):
     def exp(self):
 
         localctx = TypstGrammarParser.ExpContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 30, self.RULE_exp)
+        self.enterRule(localctx, 34, self.RULE_exp)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 184
+            self.state = 195
             self.comp()
-            self.state = 186
+            self.state = 197
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,15,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,16,self._ctx)
             if la_ == 1:
-                self.state = 185
+                self.state = 196
                 self.supexpr()
 
 
@@ -1397,49 +1521,49 @@ class TypstGrammarParser ( Parser ):
     def comp(self):
 
         localctx = TypstGrammarParser.CompContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 32, self.RULE_comp)
+        self.enterRule(localctx, 36, self.RULE_comp)
         try:
-            self.state = 196
+            self.state = 207
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.L_PAREN, TypstGrammarParser.L_BRACE, TypstGrammarParser.L_BRACKET]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 188
+                self.state = 199
                 self.group()
                 pass
             elif token in [TypstGrammarParser.BAR]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 189
+                self.state = 200
                 self.abs_group()
                 pass
             elif token in [TypstGrammarParser.FUNC]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 190
+                self.state = 201
                 self.func()
                 pass
             elif token in [TypstGrammarParser.FUNC_MAT]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 191
+                self.state = 202
                 self.matrix()
                 pass
             elif token in [TypstGrammarParser.REDUCE_OP]:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 192
+                self.state = 203
                 self.reduceit()
                 pass
             elif token in [TypstGrammarParser.FUNC_LIM]:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 193
+                self.state = 204
                 self.lim()
                 pass
             elif token in [TypstGrammarParser.FUNC_INTEGRAL]:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 194
+                self.state = 205
                 self.integral()
                 pass
             elif token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
                 self.enterOuterAlt(localctx, 8)
-                self.state = 195
+                self.state = 206
                 self.atom()
                 pass
             else:
@@ -1499,36 +1623,36 @@ class TypstGrammarParser ( Parser ):
     def group(self):
 
         localctx = TypstGrammarParser.GroupContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 34, self.RULE_group)
+        self.enterRule(localctx, 38, self.RULE_group)
         try:
-            self.state = 210
+            self.state = 221
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.L_PAREN]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 198
+                self.state = 209
                 self.match(TypstGrammarParser.L_PAREN)
-                self.state = 199
+                self.state = 210
                 self.expr()
-                self.state = 200
+                self.state = 211
                 self.match(TypstGrammarParser.R_PAREN)
                 pass
             elif token in [TypstGrammarParser.L_BRACE]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 202
+                self.state = 213
                 self.match(TypstGrammarParser.L_BRACE)
-                self.state = 203
+                self.state = 214
                 self.expr()
-                self.state = 204
+                self.state = 215
                 self.match(TypstGrammarParser.R_BRACE)
                 pass
             elif token in [TypstGrammarParser.L_BRACKET]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 206
+                self.state = 217
                 self.match(TypstGrammarParser.L_BRACKET)
-                self.state = 207
+                self.state = 218
                 self.expr()
-                self.state = 208
+                self.state = 219
                 self.match(TypstGrammarParser.R_BRACKET)
                 pass
             else:
@@ -1576,14 +1700,14 @@ class TypstGrammarParser ( Parser ):
     def abs_group(self):
 
         localctx = TypstGrammarParser.Abs_groupContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 36, self.RULE_abs_group)
+        self.enterRule(localctx, 40, self.RULE_abs_group)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 212
+            self.state = 223
             self.match(TypstGrammarParser.BAR)
-            self.state = 213
+            self.state = 224
             self.expr()
-            self.state = 214
+            self.state = 225
             self.match(TypstGrammarParser.BAR)
         except RecognitionException as re:
             localctx.exception = re
@@ -1630,30 +1754,30 @@ class TypstGrammarParser ( Parser ):
     def args(self):
 
         localctx = TypstGrammarParser.ArgsContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 38, self.RULE_args)
+        self.enterRule(localctx, 42, self.RULE_args)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 221
+            self.state = 232
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,19,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
-                    self.state = 216
+                    self.state = 227
                     self.relation(0)
-                    self.state = 217
+                    self.state = 228
                     self.match(TypstGrammarParser.COMMA) 
-                self.state = 223
+                self.state = 234
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,19,self._ctx)
 
-            self.state = 224
+            self.state = 235
             self.relation(0)
-            self.state = 226
+            self.state = 237
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==TypstGrammarParser.COMMA:
-                self.state = 225
+                self.state = 236
                 self.match(TypstGrammarParser.COMMA)
 
 
@@ -1702,30 +1826,30 @@ class TypstGrammarParser ( Parser ):
     def mat_args(self):
 
         localctx = TypstGrammarParser.Mat_argsContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 40, self.RULE_mat_args)
+        self.enterRule(localctx, 44, self.RULE_mat_args)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 233
+            self.state = 244
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,21,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
-                    self.state = 228
+                    self.state = 239
                     self.args()
-                    self.state = 229
+                    self.state = 240
                     self.match(TypstGrammarParser.SEMICOLON) 
-                self.state = 235
+                self.state = 246
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,21,self._ctx)
 
-            self.state = 236
+            self.state = 247
             self.args()
-            self.state = 238
+            self.state = 249
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==TypstGrammarParser.SEMICOLON:
-                self.state = 237
+                self.state = 248
                 self.match(TypstGrammarParser.SEMICOLON)
 
 
@@ -1778,25 +1902,25 @@ class TypstGrammarParser ( Parser ):
     def func(self):
 
         localctx = TypstGrammarParser.FuncContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 42, self.RULE_func)
+        self.enterRule(localctx, 46, self.RULE_func)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 240
+            self.state = 251
             self.match(TypstGrammarParser.FUNC)
-            self.state = 246
+            self.state = 257
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,22,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,23,self._ctx)
             if la_ == 1:
-                self.state = 241
+                self.state = 252
                 self.match(TypstGrammarParser.L_PAREN)
-                self.state = 242
+                self.state = 253
                 self.args()
-                self.state = 243
+                self.state = 254
                 self.match(TypstGrammarParser.R_PAREN)
                 pass
 
             elif la_ == 2:
-                self.state = 245
+                self.state = 256
                 self.mp(0)
                 pass
 
@@ -1846,16 +1970,16 @@ class TypstGrammarParser ( Parser ):
     def matrix(self):
 
         localctx = TypstGrammarParser.MatrixContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 44, self.RULE_matrix)
+        self.enterRule(localctx, 48, self.RULE_matrix)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 248
+            self.state = 259
             self.match(TypstGrammarParser.FUNC_MAT)
-            self.state = 249
+            self.state = 260
             self.match(TypstGrammarParser.L_PAREN)
-            self.state = 250
+            self.state = 261
             self.mat_args()
-            self.state = 251
+            self.state = 262
             self.match(TypstGrammarParser.R_PAREN)
         except RecognitionException as re:
             localctx.exception = re
@@ -1900,14 +2024,14 @@ class TypstGrammarParser ( Parser ):
     def reduceit(self):
 
         localctx = TypstGrammarParser.ReduceitContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 46, self.RULE_reduceit)
+        self.enterRule(localctx, 50, self.RULE_reduceit)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 253
+            self.state = 264
             self.match(TypstGrammarParser.REDUCE_OP)
-            self.state = 254
+            self.state = 265
             self.subsupassign()
-            self.state = 255
+            self.state = 266
             self.mp(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -1965,22 +2089,22 @@ class TypstGrammarParser ( Parser ):
     def lim(self):
 
         localctx = TypstGrammarParser.LimContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 48, self.RULE_lim)
+        self.enterRule(localctx, 52, self.RULE_lim)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 257
+            self.state = 268
             self.match(TypstGrammarParser.FUNC_LIM)
-            self.state = 258
+            self.state = 269
             self.match(TypstGrammarParser.L_PAREN)
-            self.state = 259
+            self.state = 270
             self.symbol()
-            self.state = 260
+            self.state = 271
             self.match(TypstGrammarParser.LIM_APPROACH_SYM)
-            self.state = 261
+            self.state = 272
             self.expr()
-            self.state = 262
+            self.state = 273
             self.match(TypstGrammarParser.R_PAREN)
-            self.state = 263
+            self.state = 274
             self.additive(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -2032,25 +2156,25 @@ class TypstGrammarParser ( Parser ):
     def integral(self):
 
         localctx = TypstGrammarParser.IntegralContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 50, self.RULE_integral)
+        self.enterRule(localctx, 54, self.RULE_integral)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 265
+            self.state = 276
             self.match(TypstGrammarParser.FUNC_INTEGRAL)
-            self.state = 267
+            self.state = 278
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==TypstGrammarParser.UNDERSCORE or _la==TypstGrammarParser.CARET:
-                self.state = 266
+                self.state = 277
                 self.subsupexpr()
 
 
-            self.state = 269
+            self.state = 280
             self.additive(0)
-            self.state = 270
+            self.state = 281
             self.match(TypstGrammarParser.DIF)
-            self.state = 271
+            self.state = 282
             self.symbol()
         except RecognitionException as re:
             localctx.exception = re
@@ -2090,23 +2214,23 @@ class TypstGrammarParser ( Parser ):
     def text(self):
 
         localctx = TypstGrammarParser.TextContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 52, self.RULE_text)
+        self.enterRule(localctx, 56, self.RULE_text)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 273
+            self.state = 284
             self.match(TypstGrammarParser.QUOTE)
-            self.state = 277
+            self.state = 288
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,24,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,25,self._ctx)
             while _alt!=1 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1+1:
-                    self.state = 274
+                    self.state = 285
                     self.matchWildcard() 
-                self.state = 279
+                self.state = 290
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,24,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,25,self._ctx)
 
-            self.state = 280
+            self.state = 291
             self.match(TypstGrammarParser.QUOTE)
         except RecognitionException as re:
             localctx.exception = re
@@ -2153,16 +2277,16 @@ class TypstGrammarParser ( Parser ):
     def accent(self):
 
         localctx = TypstGrammarParser.AccentContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 54, self.RULE_accent)
+        self.enterRule(localctx, 58, self.RULE_accent)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 282
+            self.state = 293
             self.match(TypstGrammarParser.ACCENT_OP)
-            self.state = 283
+            self.state = 294
             self.match(TypstGrammarParser.L_PAREN)
-            self.state = 284
+            self.state = 295
             self.expr()
-            self.state = 285
+            self.state = 296
             self.match(TypstGrammarParser.R_PAREN)
         except RecognitionException as re:
             localctx.exception = re
@@ -2207,24 +2331,24 @@ class TypstGrammarParser ( Parser ):
     def symbol_base(self):
 
         localctx = TypstGrammarParser.Symbol_baseContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 56, self.RULE_symbol_base)
+        self.enterRule(localctx, 60, self.RULE_symbol_base)
         try:
-            self.state = 290
+            self.state = 301
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.SYMBOL_BASE]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 287
+                self.state = 298
                 self.match(TypstGrammarParser.SYMBOL_BASE)
                 pass
             elif token in [TypstGrammarParser.QUOTE]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 288
+                self.state = 299
                 self.text()
                 pass
             elif token in [TypstGrammarParser.ACCENT_OP]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 289
+                self.state = 300
                 self.accent()
                 pass
             else:
@@ -2270,16 +2394,16 @@ class TypstGrammarParser ( Parser ):
     def symbol(self):
 
         localctx = TypstGrammarParser.SymbolContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 58, self.RULE_symbol)
+        self.enterRule(localctx, 62, self.RULE_symbol)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 292
+            self.state = 303
             self.symbol_base()
-            self.state = 294
+            self.state = 305
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,26,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,27,self._ctx)
             if la_ == 1:
-                self.state = 293
+                self.state = 304
                 self.subargs()
 
 
@@ -2322,19 +2446,19 @@ class TypstGrammarParser ( Parser ):
     def atom(self):
 
         localctx = TypstGrammarParser.AtomContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 60, self.RULE_atom)
+        self.enterRule(localctx, 64, self.RULE_atom)
         try:
-            self.state = 298
+            self.state = 309
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.NUMBER]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 296
+                self.state = 307
                 self.match(TypstGrammarParser.NUMBER)
                 pass
             elif token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 297
+                self.state = 308
                 self.symbol()
                 pass
             else:

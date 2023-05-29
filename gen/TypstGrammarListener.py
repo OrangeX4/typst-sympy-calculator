@@ -62,15 +62,6 @@ class TypstGrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by TypstGrammarParser#postfix.
-    def enterPostfix(self, ctx:TypstGrammarParser.PostfixContext):
-        pass
-
-    # Exit a parse tree produced by TypstGrammarParser#postfix.
-    def exitPostfix(self, ctx:TypstGrammarParser.PostfixContext):
-        pass
-
-
     # Enter a parse tree produced by TypstGrammarParser#subargs.
     def enterSubargs(self, ctx:TypstGrammarParser.SubargsContext):
         pass
@@ -140,6 +131,33 @@ class TypstGrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by TypstGrammarParser#eval_at.
     def exitEval_at(self, ctx:TypstGrammarParser.Eval_atContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#transpose.
+    def enterTranspose(self, ctx:TypstGrammarParser.TransposeContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#transpose.
+    def exitTranspose(self, ctx:TypstGrammarParser.TransposeContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#postfix_op.
+    def enterPostfix_op(self, ctx:TypstGrammarParser.Postfix_opContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#postfix_op.
+    def exitPostfix_op(self, ctx:TypstGrammarParser.Postfix_opContext):
+        pass
+
+
+    # Enter a parse tree produced by TypstGrammarParser#postfix.
+    def enterPostfix(self, ctx:TypstGrammarParser.PostfixContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#postfix.
+    def exitPostfix(self, ctx:TypstGrammarParser.PostfixContext):
         pass
 
 

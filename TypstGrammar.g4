@@ -42,14 +42,12 @@ CARET: '^';
 SEMICOLON: ';';
 COMMA: ',';
 PERIOD: '.';
-BANG: '!';
-TRANSPOSE: '^T' | '^top';
 LIM_APPROACH_SYM: '->';
 
 RELATION_OP: '=' | '==' | '!=' | '<' | '>' | '<=' | '>=';
 ADDITIVE_OP: '+' | '-';
 MP_OP: '*' | '/' | '\\/';
-POSTFIX_OP: BANG | TRANSPOSE;
+POSTFIX_OP: '!' | '%';
 ACCENT_OP: '<typst_math_accent>';
 REDUCE_OP: '<typst_math_reduce>';
 
@@ -83,8 +81,6 @@ mp: mp MP_OP mp | unary;
 
 unary: ADDITIVE_OP unary | postfix+;
 
-postfix: exp POSTFIX_OP*;
-
 subargs: UNDERSCORE (atom | L_PAREN args R_PAREN);
 
 subexpr: UNDERSCORE (atom | L_PAREN expr R_PAREN);
@@ -96,6 +92,12 @@ supassign: CARET (exp | L_PAREN (expr | relation) R_PAREN);
 subsupassign: subassign | supassign | subassign supexpr | supexpr subassign;
 
 eval_at: EVAL_BAR subsupassign;
+
+transpose: '^T' | '^top' | '^(T)' | '^(top)';
+
+postfix_op: POSTFIX_OP | transpose | eval_at;
+
+postfix: exp postfix_op*;
 
 exp: comp supexpr?;
 

@@ -22,6 +22,7 @@ class TypstMathParser:
         self.id2type['plus'] = 'ADDITIVE_OP'
         self.id2type['sum'] = 'REDUCE_OP'
         self.id2type['sin'] = 'FUNC'
+        self.id2type['degree'] = 'POSTFIX_OP'
 
     def parse(self, typst_math):
         # set the input and matherror
@@ -100,3 +101,11 @@ if __name__ == '__main__':
     assert math.relation().expr().additive().mp().unary().postfix()[0].exp().comp().getText() == 'x_2'
     math = typst_parser.parse("sum_(k=1)^2 k^2 + 1")
     assert math.relation().expr().additive().additive()[0].mp().unary().postfix()[0].exp().comp().reduceit().mp().getText() == 'k^2'
+    math = typst_parser.parse("A^T")
+    assert math.relation().expr().additive().mp().unary().postfix()[0].postfix_op()[0].getText() == '^T'
+    math = typst_parser.parse("2 degree + 1")
+    assert math.relation().expr().additive().additive()[0].mp().unary().postfix()[0].postfix_op()[0].getText() == 'degree'
+    math = typst_parser.parse("2! + 1")
+    assert math.relation().expr().additive().additive()[0].mp().unary().postfix()[0].postfix_op()[0].getText() == '!'
+    math = typst_parser.parse("2% + 1")
+    assert math.relation().expr().additive().additive()[0].mp().unary().postfix()[0].postfix_op()[0].getText() == '%'
