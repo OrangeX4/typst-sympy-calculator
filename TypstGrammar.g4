@@ -120,7 +120,7 @@ matrix: FUNC_MAT L_PAREN mat_args R_PAREN;
 
 reduceit: REDUCE_OP subsupassign mp;
 
-lim: FUNC_LIM L_PAREN symbol LIM_APPROACH_SYM expr R_PAREN additive;
+lim: FUNC_LIM UNDERSCORE L_PAREN symbol LIM_APPROACH_SYM expr R_PAREN additive;
 
 integral: FUNC_INTEGRAL subsupexpr? additive DIF symbol;
 

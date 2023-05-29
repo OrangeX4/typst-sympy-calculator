@@ -15,14 +15,6 @@ class TypstMathParser:
     def __init__(self):
         # setup listener
         self.matherror = MathErrorListener()
-        # setup lexer
-        self.init_lex()
-
-    def init_lex(self):
-        self.id2type['plus'] = 'ADDITIVE_OP'
-        self.id2type['sum'] = 'REDUCE_OP'
-        self.id2type['sin'] = 'FUNC'
-        self.id2type['degree'] = 'POSTFIX_OP'
 
     def parse(self, typst_math):
         # set the input and matherror
@@ -82,7 +74,14 @@ class MathErrorListener(ErrorListener):
 
 
 if __name__ == '__main__':
+
     typst_parser = TypstMathParser()
+
+    typst_parser.id2type['plus'] = 'ADDITIVE_OP'
+    typst_parser.id2type['sum'] = 'REDUCE_OP'
+    typst_parser.id2type['sin'] = 'FUNC'
+    typst_parser.id2type['degree'] = 'POSTFIX_OP'
+
     math = typst_parser.parse("sin(1 + 2) / 2")
     assert math.relation().expr().additive().mp().mp()[0].unary().postfix()[0].exp().comp().func().args().relation()[0].getText() == '1+2'
     math = typst_parser.parse("sin(2 + 3)")
@@ -109,3 +108,7 @@ if __name__ == '__main__':
     assert math.relation().expr().additive().additive()[0].mp().unary().postfix()[0].postfix_op()[0].getText() == '!'
     math = typst_parser.parse("2% + 1")
     assert math.relation().expr().additive().additive()[0].mp().unary().postfix()[0].postfix_op()[0].getText() == '%'
+    math = typst_parser.parse("x bar_1^2 + 1")
+    assert math.relation().expr().additive().additive()[0].mp().unary().postfix()[0].postfix_op()[0].getText() == 'bar_1^2'
+    math = typst_parser.parse("lim_(x -> 0) x^2 + 1")
+    assert math.relation().expr().additive().mp().unary().postfix()[0].getText() == 'lim_(x->0)x^2+1'
