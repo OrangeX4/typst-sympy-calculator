@@ -52,7 +52,7 @@ ACCENT_OP: '<typst_math_accent>';
 REDUCE_OP: '<typst_math_reduce>';
 
 FUNC: '<typst_math_func>';
-FUNC_MAT: 'mat';
+FUNC_MAT: '<typst_math_mat>';
 FUNC_LIM: 'lim';
 FUNC_INTEGRAL: 'integral';
 DIF: 'dif';

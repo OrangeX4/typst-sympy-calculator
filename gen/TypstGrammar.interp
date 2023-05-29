@@ -30,7 +30,7 @@ null
 '<typst_math_accent>'
 '<typst_math_reduce>'
 '<typst_math_func>'
-'mat'
+'<typst_math_mat>'
 'lim'
 'integral'
 'dif'
