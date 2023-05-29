@@ -4,7 +4,7 @@ from TypstConverter import TypstMathConverter
 
 class TypstCalculator:
 
-    def __init__(self, precision: int=15, return_text=False, enable_subs=True):
+    def __init__(self, precision: int = 15, return_text=False, enable_subs=True):
         self.converter = TypstMathConverter()
         self.precision = precision
         self.return_text = return_text
@@ -23,7 +23,10 @@ class TypstCalculator:
     def define_symbol_base(self, symbol_base_name: str):
         self.converter.define_symbol_base(symbol_base_name)
 
-    def set_variance(self, name: str, value: str, simplify=True):
+    def set_variance(self, name: str, value, simplify=True):
+        if not isinstance(value, str):
+            self.var[name] = value
+            return
         if simplify:
             self.var[name] = self.converter.sympy(value).simplify()
         else:
@@ -44,7 +47,7 @@ class TypstCalculator:
 
     def typst(self, sympy_expr):
         return self.converter.typst(sympy_expr)
-    
+
     def doit(self, sympy_expr):
         '''
         doit until the expression is simplified
@@ -75,11 +78,12 @@ class TypstCalculator:
         else:
             return result
 
-    def evalf(self, typst_math: str, n: int=None):
+    def evalf(self, typst_math: str, n: int = None):
         expr = self.converter.sympy(typst_math)
         if self.enable_subs:
             expr = expr.subs(self.variances, simultaneous=True)
-        result = sympy.N(sympy.simplify(self.doit(expr)), n=n if n else self.precision)
+        result = sympy.N(sympy.simplify(self.doit(expr)),
+                         n=n if n else self.precision)
         if self.return_text:
             return self.typst(result)
         else:
@@ -107,6 +111,7 @@ class TypstCalculator:
 
 if __name__ == '__main__':
     calculator = TypstCalculator(return_text=True, enable_subs=True)
+    operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat, constant = calculator.get_decorators()
 
     expr = calculator.simplify('1 + 1')
     assert expr == '2'
@@ -121,3 +126,10 @@ if __name__ == '__main__':
     calculator.unset_variance('a')
     expr = calculator.simplify('a + 1')
     assert expr == 'a + 1' or expr == '1 + a'
+
+    @constant()
+    def convert_pi():
+        return sympy.pi
+    
+    expr = calculator.simplify('pi')
+    assert expr == 'pi'

@@ -251,6 +251,15 @@ class TypstGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TypstGrammarParser#log.
+    def enterLog(self, ctx:TypstGrammarParser.LogContext):
+        pass
+
+    # Exit a parse tree produced by TypstGrammarParser#log.
+    def exitLog(self, ctx:TypstGrammarParser.LogContext):
+        pass
+
+
     # Enter a parse tree produced by TypstGrammarParser#integral.
     def enterIntegral(self, ctx:TypstGrammarParser.IntegralContext):
         pass

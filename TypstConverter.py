@@ -199,6 +199,8 @@ class TypstMathConverter(object):
             return self.convert_reduceit(comp.reduceit())
         elif comp.lim():
             return self.convert_lim(comp.lim())
+        elif comp.log():
+            return self.convert_log(comp.log())
         elif comp.integral():
             return self.convert_integral(comp.integral())
         elif comp.atom():
@@ -234,6 +236,18 @@ class TypstMathConverter(object):
         expr = self.convert_expr(lim.expr())
         additive = self.convert_additive(lim.additive())
         return sympy.Limit(additive, symbol, expr)
+    
+    def convert_log(self, log):
+        if log.expr():
+            value = self.convert_expr(log.expr())
+        else:
+            assert log.mp()
+            value = self.convert_mp(log.mp())
+        if log.subexpr():
+            subexpr = self.convert_subexpr(log.subexpr())
+            return sympy.log(value, subexpr)
+        else:
+            return sympy.log(value)
 
     def convert_integral(self, integral):
         subsupexpr = integral.subsupexpr()
@@ -269,6 +283,13 @@ class TypstMathConverter(object):
     def convert_atom(self, atom):
         if atom.NUMBER():
             return sympy.Number(atom.NUMBER().getText())
+        if atom.CONSTANT():
+            constant_name = atom.CONSTANT().getText()
+            if constant_name in self.id2type and self.id2type[constant_name] == 'CONSTANT':
+                assert constant_name in self.id2func, f'constant function for {constant_name} not found'
+                return self.id2func[constant_name]()
+            else:
+                raise Exception(f'unknown constant {constant_name}')
         elif atom.symbol():
             return self.convert_symbol(atom.symbol())
         else:
@@ -280,7 +301,7 @@ class TypstMathConverter(object):
     def get_decorators(env):
 
         class operator(object):
-            def __init__(self, type: str, convert_ast: Callable, name=None, ast=False):
+            def __init__(self, type: str, convert_ast: Callable, name: str = None, ast=False):
                 self.type = type
                 self.convert_ast = convert_ast
                 self.name = name
@@ -295,7 +316,7 @@ class TypstMathConverter(object):
                     assert name.startswith(
                         'convert_'), f'function name "{name}" should start with "convert_"'
                     assert len(name) > len('convert_')
-                    self.name = name[len('convert_'):]
+                    self.name = name[len('convert_'):].replace('_dot_', '.')
                 if self.ast:
                     self.func = func
                 else:
@@ -314,28 +335,28 @@ class TypstMathConverter(object):
 
         class relation_op(operator):
 
-            def __init__(self, name=None, ast=False):
+            def __init__(self, name: str = None, ast=False):
                 def convert_ast(relation):
                     return [self.env.convert_relation(relation) for relation in relation.relation()], {}
                 super().__init__('RELATION_OP', convert_ast, name, ast)
 
         class additive_op(operator):
 
-            def __init__(self, name=None, ast=False):
+            def __init__(self, name: str = None, ast=False):
                 def convert_ast(additive):
                     return [self.env.convert_additive(additive) for additive in additive.additive()], {}
                 super().__init__('ADDITIVE_OP', convert_ast, name, ast)
 
         class mp_op(operator):
 
-            def __init__(self, name=None, ast=False):
+            def __init__(self, name: str = None, ast=False):
                 def convert_ast(mp):
                     return [self.env.convert_mp(mp) for mp in mp.mp()], {}
                 super().__init__('MP_OP', convert_ast, name, ast)
 
         class postfix_op(operator):
 
-            def __init__(self, name=None, ast=False):
+            def __init__(self, name: str = None, ast=False):
                 # unsupported ast so do nothing
                 def convert_ast(result):
                     return [result], {}
@@ -343,12 +364,12 @@ class TypstMathConverter(object):
 
         class reduce_op(operator):
 
-            def __init__(self, name=None, ast=False):
+            def __init__(self, name: str = None, ast=False):
                 raise NotImplementedError('reduce_op')
 
         class func(operator):
 
-            def __init__(self, name=None, ast=False):
+            def __init__(self, name: str = None, ast=False):
                 def convert_ast(func):
                     func_args = func.args()
                     if func_args:
@@ -361,19 +382,27 @@ class TypstMathConverter(object):
 
         class func_mat(operator):
 
-            def __init__(self, name=None, ast=False):
+            def __init__(self, name: str = None, ast=False):
                 def convert_ast(matrix):
                     mat = [[self.env.convert_relation(
                         arg) for arg in args.relation()] for args in matrix.mat_args().args()]
                     return [mat], {}
                 super().__init__('FUNC_MAT', convert_ast, name, ast)
 
-        return operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat
+        class constant(operator):
+
+            def __init__(self, name: str = None, ast=False):
+                # unsupported ast so do nothing
+                def convert_ast():
+                    return [], {}
+                super().__init__('CONSTANT', convert_ast, name, ast)
+
+        return operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat, constant
 
 
 if __name__ == '__main__':
     convertor = TypstMathConverter()
-    operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat = convertor.get_decorators()
+    operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat, constant = convertor.get_decorators()
 
     @func()
     def convert_sin(x):

@@ -54,11 +54,13 @@ REDUCE_OP: '<typst_math_reduce>';
 FUNC: '<typst_math_func>';
 FUNC_MAT: '<typst_math_mat>';
 FUNC_LIM: 'lim';
+FUNC_LOG: 'log';
 FUNC_INTEGRAL: 'integral';
 DIF: 'dif';
 DIFF: 'diff';
 
 SYMBOL_BASE: LETTER;
+CONSTANT: '<typst_math_constant>';
 
 NUMBER:
 	DIGIT+ (COMMA DIGIT DIGIT DIGIT)*
@@ -101,7 +103,7 @@ postfix: exp postfix_op*;
 
 exp: comp supexpr?;
 
-comp: group | abs_group | func | matrix | reduceit | lim | integral | atom;
+comp: group | abs_group | func | matrix | reduceit | lim | log | integral | atom;
 
 group:
 	L_PAREN expr R_PAREN
@@ -122,6 +124,8 @@ reduceit: REDUCE_OP subsupassign mp;
 
 lim: FUNC_LIM UNDERSCORE L_PAREN symbol LIM_APPROACH_SYM expr R_PAREN additive;
 
+log: FUNC_LOG subexpr? (L_PAREN expr R_PAREN | mp);
+
 integral: FUNC_INTEGRAL subsupexpr? additive DIF symbol;
 
 text: QUOTE .*? QUOTE;
@@ -132,4 +136,4 @@ symbol_base: SYMBOL_BASE | text | accent;
 
 symbol: symbol_base subargs?;
 
-atom: NUMBER | symbol;
+atom: NUMBER | CONSTANT | symbol;
