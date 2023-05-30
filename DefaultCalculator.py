@@ -31,6 +31,11 @@ def get_default_calculator(calculator: TypstCalculator = None, complex_number: b
         calculator.define_accent(uo)
 
     # Symbols
+    abc = 'abcdefghijklmnopqrstuvwxyz'
+    for c in abc:
+        calculator.define_symbol_base(c)
+        calculator.define_symbol_base(c.upper())
+
     greeks = ['alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa',
               'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigma', 'tau', 'upsilon', 'phi',
               'chi', 'psi', 'omega']
@@ -278,3 +283,7 @@ if __name__ == '__main__':
 
     expr = calculator.simplify('max(1, 2)')
     assert expr == '2'
+
+    calculator.define_function('f')
+    expr = calculator.simplify('f(1) + f(1) - f(1)')
+    assert expr == 'f(1)'

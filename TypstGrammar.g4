@@ -59,7 +59,7 @@ FUNC_INTEGRAL: 'integral';
 DIF: 'dif';
 DIFF: 'diff';
 
-SYMBOL_BASE: LETTER;
+SYMBOL_BASE: '<typst_math_symbol_base>';
 
 NUMBER:
 	DIGIT+ (COMMA DIGIT DIGIT DIGIT)*

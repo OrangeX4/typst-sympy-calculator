@@ -29,6 +29,9 @@ class TypstMathConverter(object):
     def define_symbol_base(self, symbol_base_name: str):
         self.define(symbol_base_name, 'SYMBOL_BASE')
 
+    def define_function(self, function_name: str):
+        self.define(function_name, 'FUNC')
+
     def parse(self, typst_math: str):
         self.parser.id2type = self.id2type
         return self.parser.parse(typst_math)
@@ -215,8 +218,16 @@ class TypstMathConverter(object):
     def convert_func(self, func):
         func_name = func.FUNC().getText()
         if func_name in self.id2type and self.id2type[func_name] == 'FUNC':
-            assert func_name in self.id2func, f'function for {func_name} not found'
-            return self.id2func[func_name](func)
+            if func_name in self.id2func:
+                return self.id2func[func_name](func)
+            else:
+                func_args = func.args()
+                if func_args:
+                    args = [self.convert_relation(
+                        arg) for arg in func_args.relation()]
+                else:
+                    args = [self.convert_mp(func.mp())]
+                return sympy.Function(func_name)(*args)
         else:
             raise Exception(f'unknown function {func_name}')
 
@@ -236,7 +247,7 @@ class TypstMathConverter(object):
         expr = self.convert_expr(lim.expr())
         additive = self.convert_additive(lim.additive())
         return sympy.Limit(additive, symbol, expr)
-    
+
     def convert_log(self, log):
         if log.expr():
             value = self.convert_expr(log.expr())
@@ -425,9 +436,14 @@ if __name__ == '__main__':
     @func_mat()
     def convert_mat(mat):
         return sympy.matrices.Matrix(mat)
-
+    
+    convertor.define_symbol_base('x')
     expr = convertor.sympy('1 + sin 1/2 + x + 1')
     print(sympy.simplify(expr))
 
     expr = convertor.sympy('mat(1, 2; 3, 4)')
+    print(sympy.simplify(expr))
+
+    convertor.define_function('f')
+    expr = convertor.sympy('f(1) + f(1)')
     print(sympy.simplify(expr))

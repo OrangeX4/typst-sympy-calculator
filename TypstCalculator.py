@@ -23,6 +23,9 @@ class TypstCalculator:
     def define_symbol_base(self, symbol_base_name: str):
         self.converter.define_symbol_base(symbol_base_name)
 
+    def define_function(self, func_name: str):
+        self.converter.define_function(func_name)
+
     def set_variance(self, name: str, value, simplify=True):
         if not isinstance(value, str):
             self.var[name] = value

@@ -173,7 +173,7 @@ class TypstGrammarParser ( Parser ):
                      "'.'", "'->'", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "'<typst_math_accent>'", "'<typst_math_reduce>'", 
                      "'<typst_math_func>'", "'<typst_math_mat>'", "'lim'", 
-                     "'log'", "'integral'", "'dif'", "'diff'" ]
+                     "'log'", "'integral'", "'dif'", "'diff'", "'<typst_math_symbol_base>'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "MATH_START", "MATH_END", "WS", "USELESS_SIGN", 
