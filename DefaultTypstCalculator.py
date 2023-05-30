@@ -110,6 +110,11 @@ def get_default_calculator(calculator: TypstCalculator = None, complex_number: b
     def convert_degree(expr):
         return expr / 180 * sympy.pi
 
+    # Matrix
+    @func_mat()
+    def convert_mat(mat):
+        return sympy.Matrix(mat)
+
     @func()
     def convert_vec(*vec):
         return sympy.Matrix(vec)
