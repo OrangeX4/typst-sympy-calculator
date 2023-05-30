@@ -8,10 +8,12 @@
 
 It is designed for providing **people writing in typst** a ability to calculate something when writing math expression. It is based on `Sympy` module in `Python`.
 
-The `typst-calculator` python package is a backend for a VS Code extension, and you also can use it just for parse typst math expression to sympy form in order to do things for yourself.
+The `typst-sympy-calculator` python package is a backend for a VS Code extension [`Typst Sympy Calculator`](https://github.com/OrangeX4/vscode-typst-sympy-calculator), and you also can use it just for parse typst math expression to sympy form in order to do things for yourself.
 
 
 ## Features
+
+![Demo](https://picgo-1258602555.cos.ap-nanjing.myqcloud.com/typst-sympy-calculator.gif)
 
 - **Default Math:**
     - [x] **Arithmetic:** Add (`+`), Sub (`-`), Dot Mul (`dot`), Cross Mul (`times`), Frac (`/`), Power (`^`), Abs (`|x|`), Sqrt (`sqrt`), etc...
@@ -22,6 +24,7 @@ The `typst-calculator` python package is a backend for a VS Code extension, and 
     - [ ] **Calculous:** Derivation (`dif/(dif x) (x^2 + 1)`), etc...
     - [ ] **Reduce:** Sum `sum_(k=1)^oo (1/2)^k`, Product `product_(k=1)^oo (1/2)^k`
     - [x] **Linear Algebra:** Matrix to raw echelon form `rref`, Determinant `det`, Transpose `^T`, Inverse `^(-1)`, etc...
+    - [x] **Relations:** `==`, `>`, `>=`, `<`, `<=`, etc...
     - [ ] **Solve Equation:** Single Equation `x + 1 = 2`, Multiple Equations `cases(x + y = 1, x - y = 2)`, etc...
     - [x] **Other:** Binomial `binom(n, k)` ...
 - **Custom Math (in typst file):**
@@ -39,7 +42,7 @@ The `typst-calculator` python package is a backend for a VS Code extension, and 
     - [x] Complete `TypstMathPrinter` in `TypstConverter.py`
     - [ ] Custom Printer for `TypstCalculator.py` and `TypstCalculatorServer.py`
 - **VS Code Extension:**
-    - [ ] Develop a VS Code Extension for `Typst Calculator`
+    - [x] Develop a VS Code Extension for `Typst Calculator`
 
 
 ## Install
@@ -207,6 +210,142 @@ expr = calculator.simplify('f(1) + f(1) - f(1)')
 assert expr == 'f(1)'
 expr = calculator.simplify('lim_(x -> oo) 1/x')
 assert expr == '0'
+```
+
+### Variances
+
+You can **ASSIGN** variance a value using same assignment form in typst:
+
+```typst
+#let x = 1
+
+// Before
+$ x $
+
+// Shift + Ctrl + E
+// After
+$ x = 1 $
+```
+
+PS: You can use grammar like `y == x + 1` to describe the relation of equality.
+
+If you want to see the bonding of variances, you can press `Shift + Ctrl + P`, and input `typst-sympy-calculator: Show Current variances`, then you will get data like:
+
+```typst
+y = x + 1
+z = 2 x
+```
+
+### Functions
+
+You can **DEFINE** a function using same form in typst:
+
+```typst
+#let f = math.op("f")
+
+// Before
+$ f(1) + f(1) $
+
+// Shift + Ctrl + E
+// After
+$ f(1) + f(1) = 2 f(1) $
+```
+
+### Symbols
+
+You can **DEFINE** a symbol using same form in typst:
+
+```typst
+#let xy = math.italic("xy")
+#let email = symbol("🖂", ("stamped", "🖃"),)
+
+$ xy + email + email.stamped $
+```
+
+### Accents
+
+You can **DEFINE** a accent using same form in typst:
+
+```typst
+#let acc(x) = math.accent(x, math.grave)
+
+$ acc(x) $
+```
+
+### Decorators for Operators
+
+You can **DEFINE** a operator using same form in typst:
+
+```typst
+#let add = math.op("+")
+
+'''typst-calculator
+@additive_op()
+def convert_add(a, b):
+    return a + b
+'''
+
+// Before
+$ 1 add 1 $
+
+// Shift + Ctrl + E
+// After
+$ 1 add 1 = 2 $
+```
+
+Or just use `'''typst-sympy-calculator` or `'''python \n # typst-calculator` to define a operator.
+
+there are some decorators you can use:
+
+- `@operator(type='ADDITIVE_OP', convert_ast=convert_ast, name=name, ast=False)`: Define a common operator;
+- `@func()`: Define a function, receive args list; 
+- `@func_mat()`: Define a matrix function, receive single arg `matrix`;
+- `@constant()`: Define a constant, receive no args but only return a constant value;
+- `@relation_op()`: Define a relation operator, receive args `a` and `b`;
+- `@additive_op()`: Define a additive operator, receive args `a` and `b`;
+- `@mp_op()`: Define a multiplicative operator, receive args `a` and `b`;
+- `@postfix_op()`: Define a postfix operator, receive args `a`;
+- `@reduce_op()`: Define a reduce operator, NOT IMPLEMENTED YET;
+
+It is important that the function name MUST be `def convert_{operator_name}`, or you can use decorator arg `@func(name='operator_name')`, and the substring `_dot_` will be replaced by `.`.
+
+There are some examples (from [DefaultTypstCalculator.py](https://github.com/OrangeX4/typst-sympy-calculator/blob/main/DefaultTypstCalculator.py)):
+
+```python
+# Constants
+@constant()
+def convert_oo():
+    return sympy.oo
+
+# Relation Operators
+@relation_op()
+def convert_eq(a, b):
+    return sympy.Eq(a, b)
+
+# Additive Operators
+@additive_op()
+def convert_plus(a, b):
+    return a + b
+
+# Mp Operators
+@mp_op()
+def convert_times(a, b):
+    return a * b
+
+# Postfix Operators
+@postfix_op()
+def convert_degree(expr):
+    return expr / 180 * sympy.pi
+
+# Matrix
+@func_mat()
+def convert_mat(mat):
+    return sympy.Matrix(mat)
+
+# Functions
+@func()
+def convert_binom(n, k):
+    return sympy.binomial(n, k)
 ```
 
 
