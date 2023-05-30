@@ -40,13 +40,14 @@ class TypstCalculatorServer:
     def enable_subs(self, value):
         self.calculator.enable_subs = value
 
-    def init(self, typst_file: str):
+    def init(self, typst_file: str) -> list:
         self.cache_mode = False
         typst_content = ''
         assert os.path.exists(typst_file), 'File not found: ' + typst_file
         with open(typst_file, 'r', encoding='utf-8') as f:
             typst_content = f.read()
         import_paths = self.find_import_and_include(typst_content)
+        res = []
         for import_path in import_paths:
             # TYPST_ROOT environment variable
             if import_path.startswith('/'):
@@ -58,8 +59,10 @@ class TypstCalculatorServer:
             else:
                 # Convert '../../path/to/typst'
                 absolute_path = os.path.abspath(os.path.join(os.path.dirname(typst_file), import_path))
+            res.append(absolute_path)
             self.load_with_file(absolute_path)
         self.cache_mode = True
+        return res
 
     def load_with_file(self, typst_file: str):
         typst_content = ''
