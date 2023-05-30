@@ -7,12 +7,14 @@ from DefaultTypstCalculator import get_default_calculator
 
 VERSION = '0.4.2'
 
+
 class TypstCalculatorServer:
 
-    def __init__(self, calculator: TypstCalculator = None) -> None:
+    def __init__(self, calculator: TypstCalculator = None, precision=15) -> None:
         if calculator is None:
             calculator = get_default_calculator()
         self.calculator = calculator
+        self.precision = precision
         self.cache_variance_names = []
         self.cache_mode = True
 
@@ -23,11 +25,11 @@ class TypstCalculatorServer:
     @property
     def variances(self):
         return self.calculator.variances
-    
+
     @property
     def return_text(self):
         return self.calculator.return_text
-    
+
     @return_text.setter
     def return_text(self, value):
         self.calculator.return_text = value
@@ -35,7 +37,7 @@ class TypstCalculatorServer:
     @property
     def enable_subs(self):
         return self.calculator.enable_subs
-    
+
     @enable_subs.setter
     def enable_subs(self, value):
         self.calculator.enable_subs = value
@@ -58,7 +60,8 @@ class TypstCalculatorServer:
                     absolute_path = import_path
             else:
                 # Convert '../../path/to/typst'
-                absolute_path = os.path.abspath(os.path.join(os.path.dirname(typst_file), import_path))
+                absolute_path = os.path.abspath(os.path.join(
+                    os.path.dirname(typst_file), import_path))
             res.append(absolute_path)
             self.load_with_file(absolute_path)
         self.cache_mode = True
@@ -162,11 +165,14 @@ class TypstCalculatorServer:
         pattern1 = r'\s*```python\s*\n\s*# typst-calculator\s*\n([\d\D]*?)```'
         pattern2 = r'\s*```py\s*\n\s*# typst-calculator\s*\n([\d\D]*?)```'
         pattern3 = r'\s*```typst-calculator\s*\n([\d\D]*?)```'
+        pattern4 = r'\s*```typst-sympy-calculator\s*\n([\d\D]*?)```'
         for match in re.finditer(pattern1, typst_content):
             self.exec(match.group(1))
         for match in re.finditer(pattern2, typst_content):
             self.exec(match.group(1))
         for match in re.finditer(pattern3, typst_content):
+            self.exec(match.group(1))
+        for match in re.finditer(pattern4, typst_content):
             self.exec(match.group(1))
 
     def find_and_define_accent(self, typst_content: str):

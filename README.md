@@ -72,6 +72,8 @@ pip install typst-sympy-calculator
 
 It is a top-down design, so you can use `TypstCalculatorServer` directly, or use `TypstCalculator` with `TypstConverter`.
 
+**RECOMMEND: see the usage of decorators like `@func()` in [DefaultTypstCalculator.py](https://github.com/OrangeX4/typst-sympy-calculator/blob/main/DefaultTypstCalculator.py).**
+
 For the usage, you can see the unit test part `if __name__ == '__main__':` in each files.
 
 
