@@ -80,7 +80,12 @@ if __name__ == '__main__':
     typst_parser.id2type['plus'] = 'ADDITIVE_OP'
     typst_parser.id2type['sum'] = 'REDUCE_OP'
     typst_parser.id2type['sin'] = 'FUNC'
+    typst_parser.id2type['mat'] = 'FUNC_MAT'
     typst_parser.id2type['degree'] = 'POSTFIX_OP'
+    typst_parser.id2type['x'] = 'SYMBOL_BASE'
+    typst_parser.id2type['y'] = 'SYMBOL_BASE'
+    typst_parser.id2type['k'] = 'SYMBOL_BASE'
+    typst_parser.id2type['A'] = 'SYMBOL_BASE'
 
     math = typst_parser.parse("sin(1 + 2) / 2")
     assert math.relation().expr().additive().mp().mp()[0].unary().postfix()[0].exp().comp().func().args().relation()[0].getText() == '1+2'

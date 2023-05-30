@@ -117,6 +117,9 @@ if __name__ == '__main__':
     calculator = TypstCalculator(return_text=True, enable_subs=True)
     operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat, constant = calculator.get_decorators()
 
+    calculator.define_symbol_base('a')
+    calculator.define_symbol_base('pi')
+
     expr = calculator.simplify('1 + 1')
     assert expr == '2'
 

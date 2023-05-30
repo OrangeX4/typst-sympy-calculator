@@ -233,7 +233,7 @@ class TypstCalculatorServer:
 
 if __name__ == '__main__':
     server = TypstCalculatorServer()
-    typst_file = os.path.abspath(r'./test/test.typ')
+    typst_file = os.path.abspath(r'./tests/test.typ')
     server.init(typst_file)
     server.return_text = True
     expr = server.simplify('1 + 1', typst_file)

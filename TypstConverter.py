@@ -1,7 +1,34 @@
 import sympy
+from sympy.printing.str import StrPrinter
 from TypstParser import TypstMathParser
 from functools import wraps, reduce
 from typing import Callable
+
+
+class TypstMathPrinter(StrPrinter):
+
+    def _print_Mul(self, expr):
+        def paren(expr):
+            return '(' + self.doprint(expr) + ')' if expr.is_Add else self.doprint(expr)
+        return reduce(lambda x, y: x + ' ' + y, map(paren, expr.args))
+    
+    # matrix form: mat(1, 2; 3, 4)
+    def _print_MatrixBase(self, expr):
+        n, m, mat_flattern = expr.args
+        res = 'mat('
+        rows = [mat_flattern[i:i+m] for i in range(0, n*m, m)]
+        res += '; '.join(map(lambda row: ', '.join(map(self.doprint, row)), rows))
+        res += ')'
+        return res
+    
+    # using ^ but not ** for power
+    def _print_Pow(self, expr):
+        b, e = expr.args
+        base = self.doprint(b) if b.is_Atom else '(' + self.doprint(b) + ')'
+        if e.is_Atom or e.is_Pow:
+            return base + '^' + self.doprint(e)
+        else:
+            return base + '^' + '(' + self.doprint(e) + ')'
 
 
 class TypstMathConverter(object):
@@ -11,6 +38,7 @@ class TypstMathConverter(object):
 
     def __init__(self) -> None:
         self.parser = TypstMathParser()
+        self.printer = TypstMathPrinter()
 
     def define(self, name: str, type: str, func: Callable = None):
         self.id2type[name.split('_')[0]] = type
@@ -40,8 +68,8 @@ class TypstMathConverter(object):
         math = self.parse(typst_math)
         return self.convert_math(math)
 
-    def typst(self, sympy_expr):
-        return sympy.sstr(sympy_expr, full_prec=True, order='none')
+    def typst(self, sympy_expr) -> str:
+        return self.printer.doprint(sympy_expr)
 
     def convert_math(self, math):
         return self.convert_relation(math.relation())
@@ -452,12 +480,29 @@ if __name__ == '__main__':
         return sympy.matrices.Matrix(mat)
     
     convertor.define_symbol_base('x')
+    convertor.define_symbol_base('y')
+    convertor.define_symbol_base('z')
     expr = convertor.sympy('1 + sin^2 1/2 + x + 1')
-    print(sympy.simplify(expr))
+    typst = convertor.typst(sympy.simplify(expr))
+    print(typst)
 
-    expr = convertor.sympy('mat(1, 2; 3, 4)')
-    print(sympy.simplify(expr))
+    expr = convertor.sympy('(x y)^y^(z+1)')
+    typst = convertor.typst(sympy.simplify(expr))
+    print(typst)
+
+    expr = convertor.sympy('mat(x + y, 2; z, 4)')
+    typst = convertor.typst(sympy.simplify(expr))
+    print(typst)
 
     convertor.define_function('f_1')
     expr = convertor.sympy('f_1^2(1) + f_1(1)')
-    print(sympy.simplify(expr))
+    typst = convertor.typst(sympy.simplify(expr))
+    print(typst)
+
+    expr = convertor.sympy('x * y * z')
+    typst = convertor.typst(expr)
+    assert typst == 'x y z'
+
+    expr = convertor.sympy('(x + 1) * y * z')
+    typst = convertor.typst(expr)
+    assert typst == 'y z (x + 1)'
