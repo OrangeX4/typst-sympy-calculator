@@ -3,7 +3,7 @@ import math
 import re
 import os
 from TypstCalculator import TypstCalculator
-from DefaultCalculator import get_default_calculator
+from DefaultTypstCalculator import get_default_calculator
 
 
 class TypstCalculatorServer:
@@ -237,11 +237,11 @@ if __name__ == '__main__':
     server.init(typst_file)
     server.return_text = True
     expr = server.simplify('1 + 1', typst_file)
+    print(expr)
     server.enable_subs = False
     expr = server.simplify('a + 1', typst_file)
     print(expr)
     server.enable_subs = True
-    print(expr)
     expr = server.simplify('a + 1', typst_file)
     print(expr)
     expr = server.simplify('b + 1', typst_file)

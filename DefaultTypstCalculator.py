@@ -48,9 +48,9 @@ def get_default_calculator(calculator: TypstCalculator = None, complex_number: b
         calculator.define_symbol_base(greek_alt)
 
     # Constants
-    # @constant()
-    # def convert_pi():
-    #     return sympy.pi
+    @constant()
+    def convert_oo():
+        return sympy.oo
 
     calculator.set_variance('pi', sympy.pi)
     calculator.set_variance('e', sympy.E)
@@ -230,7 +230,11 @@ def get_default_calculator(calculator: TypstCalculator = None, complex_number: b
     # Matrix Functions
     @func()
     def convert_rank(expr):
-        return sympy.rank(expr)
+        return sympy.Matrix.rank(expr)
+
+    @func()
+    def convert_rref(expr):
+        return sympy.Matrix.rref(expr)
 
     @func()
     def convert_det(expr):
@@ -256,7 +260,8 @@ if __name__ == '__main__':
     calculator = get_default_calculator(complex_number=True)
     calculator.return_text = True
 
-    operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat, constant = calculator.get_decorators()
+    operator, relation_op, additive_op, mp_op, postfix_op, \
+        reduce_op, func, func_mat, constant = calculator.get_decorators()
 
     expr = calculator.simplify('1 + 1')
     assert expr == '2'
@@ -281,3 +286,6 @@ if __name__ == '__main__':
     calculator.define_function('f')
     expr = calculator.simplify('f(1) + f(1) - f(1)')
     assert expr == 'f(1)'
+
+    expr = calculator.simplify('lim_(x -> oo) 1/x')
+    assert expr == '0'
