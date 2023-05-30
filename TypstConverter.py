@@ -283,20 +283,18 @@ class TypstMathConverter(object):
     def convert_atom(self, atom):
         if atom.NUMBER():
             return sympy.Number(atom.NUMBER().getText())
-        if atom.CONSTANT():
-            constant_name = atom.CONSTANT().getText()
-            if constant_name in self.id2type and self.id2type[constant_name] == 'CONSTANT':
-                assert constant_name in self.id2func, f'constant function for {constant_name} not found'
-                return self.id2func[constant_name]()
-            else:
-                raise Exception(f'unknown constant {constant_name}')
         elif atom.symbol():
             return self.convert_symbol(atom.symbol())
         else:
             raise Exception(f'unknown atom {atom.getText()}')
 
     def convert_symbol(self, symbol):
-        return sympy.Symbol(symbol.getText())
+        symbol_name = symbol.getText()
+        if symbol_name in self.id2func:
+            # it is a constant function but not a symbol
+            return self.id2func[symbol_name]()
+        else:
+            return sympy.Symbol(symbol_name)
 
     def get_decorators(env):
 
@@ -389,13 +387,29 @@ class TypstMathConverter(object):
                     return [mat], {}
                 super().__init__('FUNC_MAT', convert_ast, name, ast)
 
-        class constant(operator):
+        class constant:
 
             def __init__(self, name: str = None, ast=False):
-                # unsupported ast so do nothing
-                def convert_ast():
-                    return [], {}
-                super().__init__('CONSTANT', convert_ast, name, ast)
+                self.type = 'CONSTANT'
+                self.name = name
+                self.func = None
+                self.env = env
+
+            def __call__(self, func):
+                assert isinstance(func, Callable)
+                if self.name is None:
+                    name = func.__name__
+                    assert name.startswith(
+                        'convert_'), f'function name "{name}" should start with "convert_"'
+                    assert len(name) > len('convert_')
+                    self.name = name[len('convert_'):].replace('_dot_', '.')
+                self.func = func
+                self.env.define_symbol_base(self.name.split('_')[0])
+                self.env.id2func[self.name] = self.func
+                return self.func
+
+            def __repr__(self):
+                return f'{self.type}(name = {self.name})'
 
         return operator, relation_op, additive_op, mp_op, postfix_op, reduce_op, func, func_mat, constant
 

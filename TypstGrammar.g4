@@ -60,7 +60,6 @@ DIF: 'dif';
 DIFF: 'diff';
 
 SYMBOL_BASE: LETTER;
-CONSTANT: '<typst_math_constant>';
 
 NUMBER:
 	DIGIT+ (COMMA DIGIT DIGIT DIGIT)*
@@ -136,4 +135,4 @@ symbol_base: SYMBOL_BASE | text | accent;
 
 symbol: symbol_base subargs?;
 
-atom: NUMBER | CONSTANT | symbol;
+atom: NUMBER | symbol;

@@ -8,8 +8,8 @@ import sys
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3*")
-        buf.write("\u014a\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3)")
+        buf.write("\u0149\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
@@ -39,9 +39,9 @@ def serializedATN():
         buf.write("\35\3\35\3\35\3\35\5\35\u0124\n\35\3\36\3\36\5\36\u0128")
         buf.write("\n\36\3\36\3\36\3\36\3\36\3\37\3\37\7\37\u0130\n\37\f")
         buf.write("\37\16\37\u0133\13\37\3\37\3\37\3 \3 \3 \3 \3 \3!\3!\3")
-        buf.write("!\5!\u013f\n!\3\"\3\"\5\"\u0143\n\"\3#\3#\3#\5#\u0148")
-        buf.write("\n#\3#\3\u0131\5\4\b\n$\2\4\6\b\n\f\16\20\22\24\26\30")
-        buf.write("\32\34\36 \"$&(*,.\60\62\64\668:<>@BD\2\3\3\2\3\6\2\u0153")
+        buf.write("!\5!\u013f\n!\3\"\3\"\5\"\u0143\n\"\3#\3#\5#\u0147\n#")
+        buf.write("\3#\3\u0131\5\4\b\n$\2\4\6\b\n\f\16\20\22\24\26\30\32")
+        buf.write("\34\36 \"$&(*,.\60\62\64\668:<>@BD\2\3\3\2\3\6\2\u0151")
         buf.write("\2F\3\2\2\2\4J\3\2\2\2\6U\3\2\2\2\bW\3\2\2\2\nb\3\2\2")
         buf.write("\2\ft\3\2\2\2\16v\3\2\2\2\20~\3\2\2\2\22\u0086\3\2\2\2")
         buf.write("\24\u0094\3\2\2\2\26\u0096\3\2\2\2\30\u00a1\3\2\2\2\32")
@@ -51,7 +51,7 @@ def serializedATN():
         buf.write("\2\2\2\60\u0100\3\2\2\2\62\u0108\3\2\2\2\64\u010d\3\2")
         buf.write("\2\2\66\u0111\3\2\2\28\u011a\3\2\2\2:\u0125\3\2\2\2<\u012d")
         buf.write("\3\2\2\2>\u0136\3\2\2\2@\u013e\3\2\2\2B\u0140\3\2\2\2")
-        buf.write("D\u0147\3\2\2\2FG\7\7\2\2GH\5\4\3\2HI\7\b\2\2I\3\3\2\2")
+        buf.write("D\u0146\3\2\2\2FG\7\7\2\2GH\5\4\3\2HI\7\b\2\2I\3\3\2\2")
         buf.write("\2JK\b\3\1\2KL\5\6\4\2LR\3\2\2\2MN\f\4\2\2NO\7\32\2\2")
         buf.write("OQ\5\4\3\5PM\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2\2S\5")
         buf.write("\3\2\2\2TR\3\2\2\2UV\5\b\5\2V\7\3\2\2\2WX\b\5\1\2XY\5")
@@ -147,12 +147,12 @@ def serializedATN():
         buf.write("\2\u013d\u013f\5> \2\u013e\u013b\3\2\2\2\u013e\u013c\3")
         buf.write("\2\2\2\u013e\u013d\3\2\2\2\u013fA\3\2\2\2\u0140\u0142")
         buf.write("\5@!\2\u0141\u0143\5\16\b\2\u0142\u0141\3\2\2\2\u0142")
-        buf.write("\u0143\3\2\2\2\u0143C\3\2\2\2\u0144\u0148\7)\2\2\u0145")
-        buf.write("\u0148\7(\2\2\u0146\u0148\5B\"\2\u0147\u0144\3\2\2\2\u0147")
-        buf.write("\u0145\3\2\2\2\u0147\u0146\3\2\2\2\u0148E\3\2\2\2!R_j")
-        buf.write("rt|\u0084\u008c\u0094\u009b\u009f\u00a6\u00aa\u00b4\u00be")
-        buf.write("\u00c4\u00c9\u00d4\u00e2\u00ed\u00f2\u00f9\u00fe\u0106")
-        buf.write("\u011c\u0123\u0127\u0131\u013e\u0142\u0147")
+        buf.write("\u0143\3\2\2\2\u0143C\3\2\2\2\u0144\u0147\7(\2\2\u0145")
+        buf.write("\u0147\5B\"\2\u0146\u0144\3\2\2\2\u0146\u0145\3\2\2\2")
+        buf.write("\u0147E\3\2\2\2!R_jrt|\u0084\u008c\u0094\u009b\u009f\u00a6")
+        buf.write("\u00aa\u00b4\u00be\u00c4\u00c9\u00d4\u00e2\u00ed\u00f2")
+        buf.write("\u00f9\u00fe\u0106\u011c\u0123\u0127\u0131\u013e\u0142")
+        buf.write("\u0146")
         return buf.getvalue()
 
 
@@ -173,8 +173,7 @@ class TypstGrammarParser ( Parser ):
                      "'.'", "'->'", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "'<typst_math_accent>'", "'<typst_math_reduce>'", 
                      "'<typst_math_func>'", "'<typst_math_mat>'", "'lim'", 
-                     "'log'", "'integral'", "'dif'", "'diff'", "<INVALID>", 
-                     "'<typst_math_constant>'" ]
+                     "'log'", "'integral'", "'dif'", "'diff'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "MATH_START", "MATH_END", "WS", "USELESS_SIGN", 
@@ -184,7 +183,7 @@ class TypstGrammarParser ( Parser ):
                       "RELATION_OP", "ADDITIVE_OP", "MP_OP", "POSTFIX_OP", 
                       "ACCENT_OP", "REDUCE_OP", "FUNC", "FUNC_MAT", "FUNC_LIM", 
                       "FUNC_LOG", "FUNC_INTEGRAL", "DIF", "DIFF", "SYMBOL_BASE", 
-                      "CONSTANT", "NUMBER", "ID" ]
+                      "NUMBER", "ID" ]
 
     RULE_math = 0
     RULE_relation = 1
@@ -267,9 +266,8 @@ class TypstGrammarParser ( Parser ):
     DIF=35
     DIFF=36
     SYMBOL_BASE=37
-    CONSTANT=38
-    NUMBER=39
-    ID=40
+    NUMBER=38
+    ID=39
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -649,7 +647,7 @@ class TypstGrammarParser ( Parser ):
                 self.state = 108
                 self.unary()
                 pass
-            elif token in [TypstGrammarParser.L_PAREN, TypstGrammarParser.L_BRACE, TypstGrammarParser.L_BRACKET, TypstGrammarParser.BAR, TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.REDUCE_OP, TypstGrammarParser.FUNC, TypstGrammarParser.FUNC_MAT, TypstGrammarParser.FUNC_LIM, TypstGrammarParser.FUNC_LOG, TypstGrammarParser.FUNC_INTEGRAL, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.CONSTANT, TypstGrammarParser.NUMBER]:
+            elif token in [TypstGrammarParser.L_PAREN, TypstGrammarParser.L_BRACE, TypstGrammarParser.L_BRACKET, TypstGrammarParser.BAR, TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.REDUCE_OP, TypstGrammarParser.FUNC, TypstGrammarParser.FUNC_MAT, TypstGrammarParser.FUNC_LIM, TypstGrammarParser.FUNC_LOG, TypstGrammarParser.FUNC_INTEGRAL, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 110 
                 self._errHandler.sync(self)
@@ -726,7 +724,7 @@ class TypstGrammarParser ( Parser ):
             self.state = 122
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.CONSTANT, TypstGrammarParser.NUMBER]:
+            if token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
                 self.state = 117
                 self.atom()
                 pass
@@ -798,7 +796,7 @@ class TypstGrammarParser ( Parser ):
             self.state = 130
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.CONSTANT, TypstGrammarParser.NUMBER]:
+            if token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
                 self.state = 125
                 self.atom()
                 pass
@@ -1008,7 +1006,7 @@ class TypstGrammarParser ( Parser ):
             self.state = 157
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.CONSTANT, TypstGrammarParser.NUMBER]:
+            if token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
                 self.state = 149
                 self.atom()
                 pass
@@ -1582,7 +1580,7 @@ class TypstGrammarParser ( Parser ):
                 self.state = 208
                 self.integral()
                 pass
-            elif token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.CONSTANT, TypstGrammarParser.NUMBER]:
+            elif token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE, TypstGrammarParser.NUMBER]:
                 self.enterOuterAlt(localctx, 9)
                 self.state = 209
                 self.atom()
@@ -2536,9 +2534,6 @@ class TypstGrammarParser ( Parser ):
         def NUMBER(self):
             return self.getToken(TypstGrammarParser.NUMBER, 0)
 
-        def CONSTANT(self):
-            return self.getToken(TypstGrammarParser.CONSTANT, 0)
-
         def symbol(self):
             return self.getTypedRuleContext(TypstGrammarParser.SymbolContext,0)
 
@@ -2562,7 +2557,7 @@ class TypstGrammarParser ( Parser ):
         localctx = TypstGrammarParser.AtomContext(self, self._ctx, self.state)
         self.enterRule(localctx, 66, self.RULE_atom)
         try:
-            self.state = 325
+            self.state = 324
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TypstGrammarParser.NUMBER]:
@@ -2570,14 +2565,9 @@ class TypstGrammarParser ( Parser ):
                 self.state = 322
                 self.match(TypstGrammarParser.NUMBER)
                 pass
-            elif token in [TypstGrammarParser.CONSTANT]:
+            elif token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 323
-                self.match(TypstGrammarParser.CONSTANT)
-                pass
-            elif token in [TypstGrammarParser.QUOTE, TypstGrammarParser.ACCENT_OP, TypstGrammarParser.SYMBOL_BASE]:
-                self.enterOuterAlt(localctx, 3)
-                self.state = 324
                 self.symbol()
                 pass
             else:
