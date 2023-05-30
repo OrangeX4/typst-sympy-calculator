@@ -18,21 +18,12 @@ class TypstCalculator:
         self.converter.undefine(name)
 
     def define_accent(self, accent_name: str):
-        '''
-        #let acc(x) = math.accent(x, math.grave)
-        '''
         self.converter.define_accent(accent_name)
 
     def define_symbol_base(self, symbol_base_name: str):
-        '''
-        #let xy = math.italic("xy")
-        '''
         self.converter.define_symbol_base(symbol_base_name)
 
     def define_function(self, func_name: str):
-        '''
-        #let fn = math.op("fn")
-        '''
         self.converter.define_function(func_name)
 
     def set_variance(self, name: str, value, simplify=True):
@@ -45,7 +36,8 @@ class TypstCalculator:
             self.var[name] = self.converter.sympy(value)
 
     def unset_variance(self, name: str):
-        del self.var[name]
+        if name in self.var:
+            del self.var[name]
 
     def clear_variance(self):
         self.var.clear()
@@ -73,7 +65,7 @@ class TypstCalculator:
         return sympy_expr
 
     def subs(self, typst_math: str):
-        expr = self.converter.sympy(typst_math)
+        expr = self.sympy(typst_math)
         result = expr.subs(self.variances, simultaneous=True)
         if self.return_text:
             return self.typst(result)
@@ -81,7 +73,7 @@ class TypstCalculator:
             return result
 
     def simplify(self, typst_math: str):
-        expr = self.converter.sympy(typst_math)
+        expr = self.sympy(typst_math)
         if self.enable_subs:
             expr = expr.subs(self.variances, simultaneous=True)
         result = sympy.simplify(self.doit(expr))
@@ -91,7 +83,7 @@ class TypstCalculator:
             return result
 
     def evalf(self, typst_math: str, n: int = None):
-        expr = self.converter.sympy(typst_math)
+        expr = self.sympy(typst_math)
         if self.enable_subs:
             expr = expr.subs(self.variances, simultaneous=True)
         result = sympy.N(sympy.simplify(self.doit(expr)),

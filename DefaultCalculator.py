@@ -1,5 +1,4 @@
 import sympy
-import math
 from TypstCalculator import TypstCalculator
 
 
@@ -110,11 +109,6 @@ def get_default_calculator(calculator: TypstCalculator = None, complex_number: b
     @postfix_op()
     def convert_degree(expr):
         return expr / 180 * sympy.pi
-
-    # Matrix
-    @func_mat()
-    def convert_matrix(matrix):
-        return sympy.Matrix(matrix)
 
     @func()
     def convert_vec(*vec):
