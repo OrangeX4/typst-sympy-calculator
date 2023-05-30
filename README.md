@@ -36,7 +36,7 @@ The `typst-calculator` python package is a backend for a VS Code extension, and 
             return a + b
         ```
 - **Typst Math Printer:**
-    - [ ] Complete Typst Math Printer in `TypstConverter.py`
+    - [x] Complete `TypstMathPrinter` in `TypstConverter.py`
     - [ ] Custom Printer for `TypstCalculator.py` and `TypstCalculatorServer.py`
 - **VS Code Extension:**
     - [ ] Develop a VS Code Extension for `Typst Calculator`

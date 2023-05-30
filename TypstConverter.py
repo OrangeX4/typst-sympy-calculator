@@ -7,10 +7,11 @@ from typing import Callable
 
 class TypstMathPrinter(StrPrinter):
 
+    def paren(self, expr):
+        return '(' + self.doprint(expr) + ')' if expr.is_Add else self.doprint(expr)
+
     def _print_Mul(self, expr):
-        def paren(expr):
-            return '(' + self.doprint(expr) + ')' if expr.is_Add else self.doprint(expr)
-        return reduce(lambda x, y: x + ' ' + y, map(paren, expr.args))
+        return reduce(lambda x, y: x + ' ' + y, map(self.paren, expr.args))
     
     # matrix form: mat(1, 2; 3, 4)
     def _print_MatrixBase(self, expr):
@@ -20,11 +21,50 @@ class TypstMathPrinter(StrPrinter):
         res += '; '.join(map(lambda row: ', '.join(map(self.doprint, row)), rows))
         res += ')'
         return res
+
+    def _print_Limit(self, expr):
+        e, z = expr.args
+        return "lim_(%s -> %s) %s" % (self._print(z), self._print(z), self._print(e))
+
+    def _print_Integral(self, expr):
+        e, lims = expr.args
+        if len(lims) > 1:
+            return "integral_%s^%s %s dif %s" % (self.paren(lims[1]), self.paren(lims[2]), self._print(e), self._print(lims[0]))
+        else:
+            return "integral %s dif %s" % (self._print(e), self._print(lims))
     
+    def _print_Sum(self, expr):
+        e, lims = expr.args
+        return "sum_(%s = %s)^%s %s" % (self._print(lims[0]), self._print(lims[1]), self.paren(lims[2]), self._print(e))
+
+    def _print_Product(self, expr):
+        e, lims = expr.args
+        return "product_(%s = %s)^%s %s" % (self._print(lims[0]), self._print(lims[1]), self.paren(lims[2]), self._print(e))
+
+    def _print_factorial(self, expr):
+        return "%s!" % self._print(expr.args[0])
+
+    def _print_Derivative(self, expr):
+        e = expr.args[0]
+        wrt = expr.args[1]
+        return "dif / (dif %s) (%s)" % (self._print(wrt), self._print(e))
+    
+    def _print_Abs(self, expr):
+        return "|%s|" % self._print(expr.args[0])
+
+    def _print_Equality(self, expr):
+        return "%s = %s" % (self._print(expr.args[0]), self._print(expr.args[1]))
+
     # using ^ but not ** for power
     def _print_Pow(self, expr):
         b, e = expr.args
         base = self.doprint(b) if b.is_Atom else '(' + self.doprint(b) + ')'
+        if e is sympy.S.Half:
+            return "sqrt(%s)" % self.doprint(b)
+        if -e is sympy.S.Half:
+            return "1 / sqrt(%s)" % self.doprint(b)
+        if e is -sympy.S.One:
+            return "1 / %s" % base
         if e.is_Atom or e.is_Pow:
             return base + '^' + self.doprint(e)
         else:
@@ -484,20 +524,20 @@ if __name__ == '__main__':
     convertor.define_symbol_base('z')
     expr = convertor.sympy('1 + sin^2 1/2 + x + 1')
     typst = convertor.typst(sympy.simplify(expr))
-    print(typst)
+    assert typst == 'x + (sin(1/2))^2 + 2'
 
     expr = convertor.sympy('(x y)^y^(z+1)')
     typst = convertor.typst(sympy.simplify(expr))
-    print(typst)
+    assert typst == '(x y)^y^(z + 1)'
 
     expr = convertor.sympy('mat(x + y, 2; z, 4)')
     typst = convertor.typst(sympy.simplify(expr))
-    print(typst)
+    assert typst == 'mat(x + y, 2; z, 4)'
 
     convertor.define_function('f_1')
     expr = convertor.sympy('f_1^2(1) + f_1(1)')
     typst = convertor.typst(sympy.simplify(expr))
-    print(typst)
+    assert typst == '(f_1(1) + 1) f_1(1)'
 
     expr = convertor.sympy('x * y * z')
     typst = convertor.typst(expr)
@@ -506,3 +546,15 @@ if __name__ == '__main__':
     expr = convertor.sympy('(x + 1) * y * z')
     typst = convertor.typst(expr)
     assert typst == 'y z (x + 1)'
+
+    expr = convertor.sympy('(x + 1) * y^(1/2)')
+    typst = convertor.typst(expr)
+    assert typst == 'sqrt(y) (x + 1)'
+
+    expr = convertor.sympy('|x|')
+    typst = convertor.typst(expr)
+    assert typst == '|x|'
+
+    expr = convertor.sympy('integral_1^2 x^2 dif x')
+    typst = convertor.typst(expr)
+    assert typst == 'integral_1^2 x^2 dif x'
