@@ -5,6 +5,7 @@ import os
 from TypstCalculator import TypstCalculator
 from DefaultTypstCalculator import get_default_calculator
 
+VERSION = '0.4.2'
 
 class TypstCalculatorServer:
 
