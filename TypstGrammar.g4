@@ -115,7 +115,7 @@ args: (relation COMMA)* relation COMMA?;
 
 mat_args: (args SEMICOLON)* args SEMICOLON?;
 
-func: FUNC (L_PAREN args R_PAREN | mp);
+func: FUNC subargs? supexpr? (L_PAREN args R_PAREN | mp);
 
 matrix: FUNC_MAT L_PAREN mat_args R_PAREN;
 

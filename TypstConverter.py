@@ -13,7 +13,7 @@ class TypstMathConverter(object):
         self.parser = TypstMathParser()
 
     def define(self, name: str, type: str, func: Callable = None):
-        self.id2type[name] = type
+        self.id2type[name.split('_')[0]] = type
         if isinstance(func, Callable):
             self.id2func[name] = func
 
@@ -216,10 +216,21 @@ class TypstMathConverter(object):
         return sympy.Abs(self.convert_expr(abs_group.expr()))
 
     def convert_func(self, func):
-        func_name = func.FUNC().getText()
-        if func_name in self.id2type and self.id2type[func_name] == 'FUNC':
+        func_base_name = func.FUNC().getText()
+        if func.subargs():
+            subargs = func.subargs().getText()
+        else:
+            subargs = ''
+        func_name = func_base_name + subargs
+        supexpr = None
+        if func.supexpr():
+            supexpr = self.convert_supexpr(func.supexpr())
+        if func_base_name in self.id2type and self.id2type[func_base_name] == 'FUNC':
             if func_name in self.id2func:
-                return self.id2func[func_name](func)
+                if supexpr:
+                    return self.id2func[func_name](func) ** supexpr
+                else:
+                    return self.id2func[func_name](func)
             else:
                 func_args = func.args()
                 if func_args:
@@ -227,7 +238,10 @@ class TypstMathConverter(object):
                         arg) for arg in func_args.relation()]
                 else:
                     args = [self.convert_mp(func.mp())]
-                return sympy.Function(func_name)(*args)
+                if supexpr:
+                    return sympy.Function(func_name)(*args) ** supexpr
+                else:
+                    return sympy.Function(func_name)(*args)
         else:
             raise Exception(f'unknown function {func_name}')
 
@@ -438,12 +452,12 @@ if __name__ == '__main__':
         return sympy.matrices.Matrix(mat)
     
     convertor.define_symbol_base('x')
-    expr = convertor.sympy('1 + sin 1/2 + x + 1')
+    expr = convertor.sympy('1 + sin^2 1/2 + x + 1')
     print(sympy.simplify(expr))
 
     expr = convertor.sympy('mat(1, 2; 3, 4)')
     print(sympy.simplify(expr))
 
-    convertor.define_function('f')
-    expr = convertor.sympy('f(1) + f(1)')
+    convertor.define_function('f_1')
+    expr = convertor.sympy('f_1^2(1) + f_1(1)')
     print(sympy.simplify(expr))

@@ -18,12 +18,21 @@ class TypstCalculator:
         self.converter.undefine(name)
 
     def define_accent(self, accent_name: str):
+        '''
+        #let acc(x) = math.accent(x, math.grave)
+        '''
         self.converter.define_accent(accent_name)
 
     def define_symbol_base(self, symbol_base_name: str):
+        '''
+        #let xy = math.italic("xy")
+        '''
         self.converter.define_symbol_base(symbol_base_name)
 
     def define_function(self, func_name: str):
+        '''
+        #let fn = math.op("fn")
+        '''
         self.converter.define_function(func_name)
 
     def set_variance(self, name: str, value, simplify=True):
