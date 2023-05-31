@@ -375,7 +375,8 @@ class TypstMathConverter(object):
 
     def convert_atom(self, atom):
         if atom.NUMBER():
-            return sympy.Number(atom.NUMBER().getText())
+            # convert to a rational number but not a float
+            return sympy.Rational(atom.NUMBER().getText())
         elif atom.symbol():
             return self.convert_symbol(atom.symbol())
         else:
