@@ -29,14 +29,14 @@ class TypstCalculator:
     def define_function(self, func_name: str):
         self.converter.define_function(func_name)
 
-    def set_variance(self, name: str, value, simplify=True):
+    def set_variance(self, name: str, value, simplify=False):
         if name.startswith('#'):
             name = name[1:]
         if not isinstance(value, str):
             self.var[name] = value
             return
         if simplify:
-            self.var[name] = self.converter.sympy(value).simplify()
+            self.var[name] = self._simplify(self.converter.sympy(value))
         else:
             self.var[name] = self.converter.sympy(value)
         name = '#' + name
@@ -44,7 +44,7 @@ class TypstCalculator:
             self.var[name] = value
             return
         if simplify:
-            self.var[name] = self.converter.sympy(value).simplify()
+            self.var[name] = self._simplify(self.converter.sympy(value))
         else:
             self.var[name] = self.converter.sympy(value)
 

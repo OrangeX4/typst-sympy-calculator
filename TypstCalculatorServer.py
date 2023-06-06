@@ -129,7 +129,7 @@ class TypstCalculatorServer:
             self.unset_variance(name)
         self.cache_variance_names = []
 
-    def set_variance(self, name: str, value, simplify=True):
+    def set_variance(self, name: str, value, simplify=False):
         if self.cache_mode:
             self.cache_variance_names.append(name)
         self.calculator.set_variance(name, value, simplify)
