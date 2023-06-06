@@ -6,12 +6,12 @@ from TypstConverter import TypstMathConverter
 
 class TypstCalculator:
 
-    def __init__(self, precision: int = 15, return_text=False, enable_subs=True):
+    def __init__(self, precision: int = 15, return_text=False, enable_subs=True, max_sub_count=1):
         self.converter = TypstMathConverter()
         self.precision = precision
         self.return_text = return_text
         self.enable_subs = enable_subs
-        self.max_sub_count = 5
+        self.max_sub_count = max_sub_count
         self.var = {}
 
     def define(self, name: str, type: str, value: str):

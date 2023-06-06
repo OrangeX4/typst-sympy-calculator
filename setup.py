@@ -6,7 +6,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name="typst-sympy-calculator",
-    version="0.5.0",
+    version="0.5.1",
     description='Convert typst math expressions to sympy form with ANTLR and support matrix, calculous and custom functions.',
     long_description_content_type='text/markdown',
     long_description=open(path.join(here, "README.md"), encoding='utf-8').read(),
