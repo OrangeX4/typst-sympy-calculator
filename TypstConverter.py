@@ -137,7 +137,7 @@ class TypstMathConverter(object):
             def rel(i):
                 return self.convert_relation(relations[i])
             if op == '=':
-                raise NotImplementedError('equal')
+                return sympy.Eq(rel(0), rel(1))
             elif op == '==':
                 return sympy.Eq(rel(0), rel(1))
             elif op == '!=':
@@ -333,9 +333,54 @@ class TypstMathConverter(object):
             return self.id2func[func_name](matrix)
         else:
             raise Exception(f'unknown matrix function {func_name}')
+        
+    def convert_subassign(self, subassign):
+        if subassign.atom():
+            return None, self.convert_atom(subassign.atom())
+        elif subassign.expr():
+            return None, self.convert_expr(subassign.expr())
+        elif subassign.relation():
+            # assert relation is `symbol = expr`
+            rel = self.convert_relation(subassign.relation())
+            assert isinstance(rel, sympy.Equality)
+            return rel.lhs, rel.rhs
+        
+    def convert_supassign(self, supassign):
+        if supassign.exp():
+            return None, self.convert_exp(supassign.exp())
+        elif supassign.expr():
+            return None, self.convert_expr(supassign.expr())
+        elif supassign.relation():
+            rel = self.convert_relation(supassign.relation())
+            assert isinstance(rel, sympy.Equality)
+            assert isinstance(rel.lhs, sympy.Symbol), f'lhs of {supassign.relation().getText()} is not a symbol'
+            return rel.lhs, rel.rhs
+    
+    def convert_subsupassign(self, subsupassign):
+        symbol = None
+        sub = None
+        sup = None
+        # process sub
+        if subsupassign.subassign():
+            sym, sub = self.convert_subassign(subsupassign.subassign())
+            if sym:
+                symbol = sym
+        # process sup
+        if subsupassign.supexpr():
+            sup = self.convert_supexpr(subsupassign.supexpr())
+        elif subsupassign.supassign():
+            sym, sup = self.convert_supassign(subsupassign.supassign())
+            if sym:
+                symbol = sym
+        return (symbol, sub, sup)
 
     def convert_reduceit(self, reduceit):
-        raise NotImplementedError('reduceit')
+        reduce_name = reduceit.REDUCE_OP().getText()
+        if reduce_name in self.id2type and self.id2type[reduce_name] == 'REDUCE_OP':
+            assert reduce_name in self.id2func, f'function for {reduce_name} not found'
+            return self.id2func[reduce_name](reduceit)
+        else:
+            raise Exception(f'unknown reduce function {reduce_name}')
 
     def convert_lim(self, lim):
         symbol = self.convert_symbol(lim.symbol())
@@ -470,7 +515,16 @@ class TypstMathConverter(object):
         class reduce_op(operator):
 
             def __init__(self, name: str = None, ast=False):
-                raise NotImplementedError('reduce_op')
+                def convert_ast(reduceit):
+                    # reduceit: REDUCE_OP subsupassign mp;
+                    symbol, sub, sup = self.env.convert_subsupassign(reduceit.subsupassign())
+                    assert sub is not None and sup is not None
+                    mp = self.env.convert_mp(reduceit.mp())
+                    if symbol is None:
+                        # get the first symbol in mp
+                        symbol = mp.free_symbols.pop()
+                    return [mp, (symbol, sub, sup)], {}
+                super().__init__('REDUCE_OP', convert_ast, name, ast)
 
         class func(operator):
 

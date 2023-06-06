@@ -118,8 +118,21 @@ def get_default_calculator(calculator: TypstCalculator = None, complex_number: b
     @func()
     def convert_vec(*vec):
         return sympy.Matrix(vec)
+    
+    # Reduces
+    @reduce_op()
+    def convert_sum(expr, args):
+        return sympy.Sum(expr, args)
+
+    @reduce_op()
+    def convert_product(expr, args):
+        return sympy.Product(expr, args)
 
     # Functions
+    @func()
+    def convert_derivative(expr, var):
+        return sympy.Derivative(expr, var)
+
     @func()
     def convert_binom(n, k):
         return sympy.binomial(n, k)
@@ -294,3 +307,15 @@ if __name__ == '__main__':
 
     expr = calculator.simplify('lim_(x -> oo) 1/x')
     assert expr == '0'
+
+    expr = calculator.simplify('sum_(k = 1)^n k')
+    assert expr == '1/2 n (n + 1)'
+
+    expr = calculator.simplify('product_(k = 1)^3 k')
+    assert expr == '6'
+
+    expr = calculator.simplify('integral_0^1 x^2 dif x')
+    assert expr == '1/3'
+
+    expr = calculator.simplify('derivative(x^2, x)')
+    assert expr == '2 x'

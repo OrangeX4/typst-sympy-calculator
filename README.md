@@ -21,8 +21,9 @@ The `typst-sympy-calculator` python package is a backend for a VS Code extension
     - [x] **Common Functions:** `gcd`, `lcm`, `floor`, `ceil`, `max`, `min`, `log`, `ln`, `exp`, `sin`, `cos`, `tan`, `csc`, `sec`, `cot`, `arcsin`, `sinh`, `arsinh`, etc...
     - [x] **Funcion Symbol:** `f(x)`, `f(x-1,)`, `g(x,y)`, etc...
     - [x] **Calculous:** Limit `lim_(x -> oo) 1/x`, Integration `integral_1^2 x dif x`, etc...
-    - [ ] **Calculous:** Derivation (`dif/(dif x) (x^2 + 1)`), etc...
-    - [ ] **Reduce:** Sum `sum_(k=1)^oo (1/2)^k`, Product `product_(k=1)^oo (1/2)^k`
+    - [x] **Calculous:** Derivation (`dif/(dif x) (x^2 + 1)` is not supported, but you can use `derivative(expr, var)` instead), etc...
+    - [x] **Reduce:** Sum `sum_(k=1)^oo (1/2)^k`, Product `product_(k=1)^oo (1/2)^k`, etc...
+    - [ ] **Eval At:** Evalat `x^2 bar_(x = 2)`, `x^2 "|"_(x = 2)`, etc...
     - [x] **Linear Algebra:** Matrix to raw echelon form `rref`, Determinant `det`, Transpose `^T`, Inverse `^(-1)`, etc...
     - [x] **Relations:** `==`, `>`, `>=`, `<`, `<=`, etc...
     - [ ] **Solve Equation:** Single Equation `x + 1 = 2`, Multiple Equations `cases(x + y = 1, x - y = 2)`, etc...
@@ -305,13 +306,23 @@ there are some decorators you can use:
 - `@additive_op()`: Define a additive operator, receive args `a` and `b`;
 - `@mp_op()`: Define a multiplicative operator, receive args `a` and `b`;
 - `@postfix_op()`: Define a postfix operator, receive args `a`;
-- `@reduce_op()`: Define a reduce operator, NOT IMPLEMENTED YET;
+- `@reduce_op()`: Define a reduce operator, receive args `expr` and `args = (symbol, sub, sup)`;
 
 It is important that the function name MUST be `def convert_{operator_name}`, or you can use decorator arg `@func(name='operator_name')`, and the substring `_dot_` will be replaced by `.`.
 
 There are some examples (from [DefaultTypstCalculator.py](https://github.com/OrangeX4/typst-sympy-calculator/blob/main/DefaultTypstCalculator.py)):
 
 ```python
+# Functions
+@func()
+def convert_binom(n, k):
+    return sympy.binomial(n, k)
+
+# Matrix
+@func_mat()
+def convert_mat(mat):
+    return sympy.Matrix(mat)
+
 # Constants
 @constant()
 def convert_oo():
@@ -337,15 +348,11 @@ def convert_times(a, b):
 def convert_degree(expr):
     return expr / 180 * sympy.pi
 
-# Matrix
-@func_mat()
-def convert_mat(mat):
-    return sympy.Matrix(mat)
-
-# Functions
-@func()
-def convert_binom(n, k):
-    return sympy.binomial(n, k)
+# Reduces
+@reduce_op()
+def convert_sum(expr, args):
+    # symbol, sub, sup = args
+    return sympy.Sum(expr, args)
 ```
 
 
