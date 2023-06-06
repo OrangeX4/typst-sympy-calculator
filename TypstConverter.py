@@ -34,7 +34,11 @@ class TypstMathPrinter(StrPrinter):
             if x == '-1':
                 return '-' + y
             return x + ' ' + y
-        return reduce(mul, map(self.paren, expr.args))
+        x = expr.args[0]
+        if x.is_Pow and x.args[1].is_Number and x.args[1] < 0:
+            return (reduce(mul, [self.paren(arg) for arg in expr.args[1:]]) if len(expr.args) > 1 else '1') + ' / ' + self.paren(sympy.simplify(x ** -1))
+        else:
+            return reduce(mul, [self.paren(arg) for arg in expr.args])
     
     # matrix form: mat(1, 2; 3, 4)
     def _print_MatrixBase(self, expr):

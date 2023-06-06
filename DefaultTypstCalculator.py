@@ -328,3 +328,9 @@ if __name__ == '__main__':
 
     expr = calculator.simplify('x^2 bar_1^(2+1)')
     assert expr == '8'
+
+    expr = calculator.simplify('(x - 1) / (x + 1)^2')
+    assert expr == '(x - 1) / (x + 1)^2'
+
+    expr = calculator.simplify('-1 / (x + 1)')
+    assert expr == '-1 / (x + 1)'
