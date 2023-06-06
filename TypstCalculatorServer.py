@@ -93,16 +93,28 @@ class TypstCalculatorServer:
 
     def subs(self, typst_math: str, typst_file: str = None):
         expr = self.sympy(typst_math, typst_file)
-        result = expr.subs(self.variances, simultaneous=True)
+        max_sub_count = 5
+        sub_count = 0
+        last = None
+        while last != expr and sub_count < max_sub_count:
+            last = expr
+            expr = expr.subs(self.variances, simultaneous=True)
+            sub_count += 1
         if self.return_text:
-            return self.typst(result)
+            return self.typst(expr)
         else:
-            return result
+            return expr
 
     def simplify(self, typst_math: str, typst_file: str = None):
         expr = self.sympy(typst_math, typst_file)
         if self.enable_subs:
-            expr = expr.subs(self.variances, simultaneous=True)
+            max_sub_count = 5
+            sub_count = 0
+            last = None
+            while last != expr and sub_count < max_sub_count:
+                last = expr
+                expr = expr.subs(self.variances, simultaneous=True)
+                sub_count += 1
         result = sympy.simplify(self.doit(expr))
         if self.return_text:
             return self.typst(result)
@@ -112,7 +124,13 @@ class TypstCalculatorServer:
     def evalf(self, typst_math: str, typst_file: str = None, n: int = None):
         expr = self.sympy(typst_math, typst_file)
         if self.enable_subs:
-            expr = expr.subs(self.variances, simultaneous=True)
+            max_sub_count = 5
+            sub_count = 0
+            last = None
+            while last != expr and sub_count < max_sub_count:
+                last = expr
+                expr = expr.subs(self.variances, simultaneous=True)
+                sub_count += 1
         result = sympy.N(sympy.simplify(self.doit(expr)),
                          n=n if n else self.precision)
         if self.return_text:
@@ -162,10 +180,11 @@ class TypstCalculatorServer:
         test()
         ```
         '''
-        pattern1 = r'\s*```python\s*\n\s*# typst-calculator\s*\n([\d\D]*?)```'
-        pattern2 = r'\s*```py\s*\n\s*# typst-calculator\s*\n([\d\D]*?)```'
-        pattern3 = r'\s*```typst-calculator\s*\n([\d\D]*?)```'
-        pattern4 = r'\s*```typst-sympy-calculator\s*\n([\d\D]*?)```'
+        typst_content = self.remove_comments(typst_content)
+        pattern1 = r'[\t ]*```python[\t ]*\n[\t ]*# typst-calculator[\t ]*\n([\d\D]*?)```'
+        pattern2 = r'[\t ]*```py[\t ]*\n[\t ]*# typst-calculator[\t ]*\n([\d\D]*?)```'
+        pattern3 = r'[\t ]*```typst-calculator[\t ]*\n([\d\D]*?)```'
+        pattern4 = r'[\t ]*```typst-sympy-calculator[\t ]*\n([\d\D]*?)```'
         for match in re.finditer(pattern1, typst_content):
             self.exec(match.group(1))
         for match in re.finditer(pattern2, typst_content):
@@ -179,7 +198,8 @@ class TypstCalculatorServer:
         '''
         #let acc(x) = math.accent(x, math.grave)
         '''
-        pattern = r'#let\s+([a-zA-z][a-zA-z0-9]*)\(\s*([_a-zA-z][_\-a-zA-z0-9]*)\s*\)\s*=\s*math\.accent'
+        typst_content = self.remove_comments(typst_content)
+        pattern = r'#let[\t ]+([a-zA-z][a-zA-z0-9]*)\([\t ]*([_a-zA-z][_\-a-zA-z0-9]*)[\t ]*\)[\t ]*=[\t ]*math\.accent'
         for match in re.finditer(pattern, typst_content):
             accent_name = match.group(1)
             accent_arg = match.group(2)
@@ -189,7 +209,8 @@ class TypstCalculatorServer:
         '''
         #let fn = math.op("fn")
         '''
-        pattern = r'#let\s+([a-zA-z][a-zA-z0-9]*)\s*=\s*math\.op'
+        typst_content = self.remove_comments(typst_content)
+        pattern = r'#let[\t ]+([a-zA-z][a-zA-z0-9]*)[\t ]*=[\t ]*math\.op'
         for match in re.finditer(pattern, typst_content):
             func_name = match.group(1)
             self.calculator.define_function(func_name)
@@ -199,9 +220,10 @@ class TypstCalculatorServer:
         #let xy = math.italic("xy")
         #let xy = symbol("🖂", ("stamped", "🖃"),)
         '''
-        pattern1 = r'#let\s+([a-zA-z][a-zA-z0-9]*)\s*=\s*math\.(?!op)'
-        pattern2 = r'#let\s+([a-zA-z][a-zA-z0-9]*)\s*=\s*symbol(\(.+\))\s*\n'
-        pattern3 = r'\("(.+?)"\s*,\s*"(.+?)"\)'
+        typst_content = self.remove_comments(typst_content)
+        pattern1 = r'#let[\t ]+([a-zA-z][a-zA-z0-9]*)[\t ]*=[\t ]*math\.(?!op)'
+        pattern2 = r'#let[\t ]+([a-zA-z][a-zA-z0-9]*)[\t ]*=[\t ]*symbol(\(.+\))[\t ]*\n'
+        pattern3 = r'\("(.+?)"[\t ]*,[\t ]*"(.+?)"\)'
         for match in re.finditer(pattern1, typst_content):
             symbol_name = match.group(1)
             self.calculator.define_symbol_base(symbol_name)
@@ -217,8 +239,9 @@ class TypstCalculatorServer:
         #let var = 2.0
         #let var = $x + y$
         '''
-        pattern1 = r'#let\s+([a-zA-z][._a-zA-z0-9]*)\s*=\s*([0-9]+(\.[0-9]*)?\%?)\s*\n'
-        pattern2 = r'#let\s+([a-zA-z][._a-zA-z0-9]*)\s*=\s*\$(.+?)\$\s*\n'
+        typst_content = self.remove_comments(typst_content)
+        pattern1 = r'#let[\t ]+([a-zA-z][._a-zA-z0-9]*)[\t ]*=[\t ]*([-+]?[\t ]*[0-9]+(\.[0-9]*)?\%?)[\t ]*\n'
+        pattern2 = r'#let[\t ]+([a-zA-z][._a-zA-z0-9]*)[\t ]*=[\t ]*\$(.+?)\$[\t ]*\n'
         for match in re.finditer(pattern1, typst_content):
             symbol_name = match.group(1)
             self.set_variance(symbol_name, match.group(2))
@@ -231,14 +254,24 @@ class TypstCalculatorServer:
         #import "../../../Typst/report-template.typ"
         #include "../../../Typst/report-template.typ"
         '''
-        pattern1 = r'#import\s+"(.+?)"'
-        pattern2 = r'#include\s+"(.+?)"'
+        typst_content = self.remove_comments(typst_content)
+        pattern1 = r'#import[\t ]+"(.+?)"'
+        pattern2 = r'#include[\t ]+"(.+?)"'
         paths = []
         for match in re.finditer(pattern1, typst_content):
             paths.append(match.group(1))
         for match in re.finditer(pattern2, typst_content):
             paths.append(match.group(1))
         return paths
+    
+    def remove_comments(self, typst_content: str) -> str:
+        '''
+        // #let var = 2.0
+        /* #let var = 2.0 */
+        '''
+        pattern1 = r'\/\/.*?\n'
+        pattern2 = r'\/\*[\d\D]*?\*\/'
+        return re.sub(pattern2, '', re.sub(pattern1, '', typst_content))
 
 
 if __name__ == '__main__':
