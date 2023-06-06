@@ -140,6 +140,14 @@ expr = server.simplify('f(1) + f(1)', typst_file)
 print(expr)  # 2 f(1)
 expr = server.simplify('xy + mail + mail.stamped', typst_file)
 print(expr)  # mail + mail.stamped + xy
+expr = server.solve('x + y + z = 1')
+print(expr)  # y = -x - z + 1, z = -x - y + 1, x = -y - z + 1
+expr = server.solve('cases(x + y + z = 1, x = 2)')
+print(expr)  # cases(x = 2, z = -y - 1), cases(y = -z - 1, x = 2), y = -x - z + 1, z = -x - y + 1
+expr = server.solve('cases(x^2 + y = 4, y = 2)')
+print(expr)  # x = sqrt(4 - y), cases(y = 2, x = sqrt(2)), cases(y = 2, x = -sqrt(2)), x = -sqrt(4 - y)
+expr = server.solve('cases(x < 2, x > 1)')
+print(expr)  # 1 < x and x < 2
 ```
 
 and the typst files `tests/test.typ`
