@@ -10,8 +10,31 @@ class TypstMathPrinter(StrPrinter):
     def paren(self, expr):
         return '(' + self.doprint(expr) + ')' if expr.is_Add else self.doprint(expr)
 
+    def _print_list(self, lst):
+        lst = list(set([self.doprint(item) for item in lst]))
+        # lst = [self.doprint(item) for item in lst]
+        return ', '.join(lst)
+
+    def _print_tuple(self, tup):
+        return ', '.join([self.doprint(item) for item in tup])
+    
+    def _print_dict(self, dic):
+        if len(dic) == 0:
+            return 'nothing'
+        elif len(dic) == 1:
+            k, v = dic.popitem()
+            return self.doprint(k) + ' = ' + self.doprint(v)
+        else:
+            return 'cases(' + ', '.join([self.doprint(k) + ' = ' + self.doprint(v) for k, v in dic.items()]) + ')'
+
     def _print_Mul(self, expr):
-        return reduce(lambda x, y: x + ' ' + y, map(self.paren, expr.args))
+        def mul(x, y):
+            if x == '1':
+                return y
+            if x == '-1':
+                return '-' + y
+            return x + ' ' + y
+        return reduce(mul, map(self.paren, expr.args))
     
     # matrix form: mat(1, 2; 3, 4)
     def _print_MatrixBase(self, expr):
@@ -226,6 +249,18 @@ class TypstMathConverter(object):
                 return postfixes[0]
             else:
                 return reduce(lambda x, y: x * y, postfixes)
+    
+    def convert_eval_at(self, expr, eval_at):
+        # eval_at: EVAL_BAR subsupassign;
+        symbol, sub, sup = self.convert_subsupassign(eval_at.subsupassign())
+        if symbol is None:
+            symbol = expr.free_symbols.pop()
+        assert sub or sup
+        if sub is None or sup is None:
+            val = sub or sup
+            return expr.subs(symbol, val)
+        else:
+            return expr.subs(symbol, sup) - expr.subs(symbol, sub)
 
     def convert_postfix(self, postfix):
         exp = postfix.exp()
@@ -234,7 +269,7 @@ class TypstMathConverter(object):
         postfix_ops = postfix.postfix_op()
         for postfix_op in postfix_ops:
             if postfix_op.eval_at():
-                raise NotImplementedError('eval_at')
+                result = self.convert_eval_at(result, postfix_op.eval_at())
             elif postfix_op.transpose():
                 result = sympy.transpose(result)
             elif postfix_op.POSTFIX_OP():

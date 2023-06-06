@@ -1,3 +1,5 @@
+import itertools
+from typing import Iterable
 import sympy
 from TypstConverter import TypstMathConverter
 
@@ -9,6 +11,7 @@ class TypstCalculator:
         self.precision = precision
         self.return_text = return_text
         self.enable_subs = enable_subs
+        self.max_sub_count = 5
         self.var = {}
 
     def define(self, name: str, type: str, value: str):
@@ -81,16 +84,26 @@ class TypstCalculator:
 
     def subs(self, typst_math: str):
         expr = self.sympy(typst_math)
-        result = expr.subs(self.variances, simultaneous=True)
+        sub_count = 0
+        last = None
+        while last != expr and sub_count < self.max_sub_count:
+            last = expr
+            expr = expr.subs(self.variances, simultaneous=True)
+            sub_count += 1
         if self.return_text:
-            return self.typst(result)
+            return self.typst(expr)
         else:
-            return result
+            return expr
 
     def simplify(self, typst_math: str):
         expr = self.sympy(typst_math)
         if self.enable_subs:
-            expr = expr.subs(self.variances, simultaneous=True)
+            sub_count = 0
+            last = None
+            while last != expr and sub_count < self.max_sub_count:
+                last = expr
+                expr = expr.subs(self.variances, simultaneous=True)
+                sub_count += 1
         result = sympy.simplify(self.doit(expr))
         if self.return_text:
             return self.typst(result)
@@ -100,13 +113,72 @@ class TypstCalculator:
     def evalf(self, typst_math: str, n: int = None):
         expr = self.sympy(typst_math)
         if self.enable_subs:
-            expr = expr.subs(self.variances, simultaneous=True)
+            sub_count = 0
+            last = None
+            while last != expr and sub_count < self.max_sub_count:
+                last = expr
+                expr = expr.subs(self.variances, simultaneous=True)
+                sub_count += 1
         result = sympy.N(sympy.simplify(self.doit(expr)),
                          n=n if n else self.precision)
         if self.return_text:
             return self.typst(result)
         else:
             return result
+        
+    def solve(self, typst_math: str):
+        expr = self.sympy(typst_math)
+        if self.enable_subs:
+            sub_count = 0
+            last = None
+            while last != expr and sub_count < self.max_sub_count:
+                last = expr
+                if isinstance(expr, list):
+                    expr = [e.subs(self.variances, simultaneous=True) for e in expr]
+                if isinstance(expr, tuple):
+                    expr = tuple(e.subs(self.variances, simultaneous=True) for e in expr)
+                elif isinstance(expr, dict):
+                    expr = {k: v.subs(self.variances, simultaneous=True) for k, v in expr.items()}
+                else:
+                    expr = expr.subs(self.variances, simultaneous=True)
+                sub_count += 1
+        if isinstance(expr, Iterable):
+            # is all equations
+            is_all_equations = True
+            for e in expr:
+                if not isinstance(e, sympy.Eq):
+                    is_all_equations = False
+                    break
+            if is_all_equations:
+                result = []
+                free_symbols = set()
+                for e in expr:
+                    free_symbols.update(e.free_symbols)
+                # subsets of free_symbols
+                subsets = []
+                for i in range(1, len(free_symbols) + 1):
+                    subsets.extend(itertools.combinations(free_symbols, i))
+                for subset in subsets:
+                    result.extend(sympy.solve(expr, subset, dict=True))
+            else:
+                result = sympy.solve(expr, dict=True)
+        else:
+            if isinstance(expr, sympy.Eq):
+                result = []
+                free_symbols = expr.free_symbols
+                # subsets of free_symbols
+                subsets = []
+                for i in range(1, len(free_symbols) + 1):
+                    subsets.extend(itertools.combinations(free_symbols, i))
+                for subset in subsets:
+                    result.extend(sympy.solve(expr, subset, dict=True))
+            else:
+                result = sympy.solve(expr, dict=True)
+        if self.return_text:
+            return self.typst(result)
+        else:
+            return result
+
 
     @property
     def id2type(self):

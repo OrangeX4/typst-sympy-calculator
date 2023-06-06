@@ -62,6 +62,11 @@ def get_default_calculator(calculator: TypstCalculator = None, complex_number: b
         calculator.set_variance('I', sympy.I)
         calculator.set_variance('j', sympy.I)
 
+    # Cases
+    @func()
+    def convert_cases(*args):
+        return args
+
     # Relation Operators
     @relation_op()
     def convert_eq(a, b):
@@ -109,6 +114,7 @@ def get_default_calculator(calculator: TypstCalculator = None, complex_number: b
     @postfix_op()
     def convert_degree(expr):
         return expr / 180 * sympy.pi
+        
 
     # Matrix
     @func_mat()
@@ -319,3 +325,15 @@ if __name__ == '__main__':
 
     expr = calculator.simplify('derivative(x^2, x)')
     assert expr == '2 x'
+
+    expr = calculator.simplify('x^2 bar_1^(2+1)')
+    assert expr == '8'
+
+    expr = calculator.solve('x + y + z = 1')
+    print(expr)
+
+    expr = calculator.solve('cases(x + y + z = 1, x = 2)')
+    print(expr)
+
+    expr = calculator.solve('cases(x^2 + y = 4, y = 2)')
+    print(expr)

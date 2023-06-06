@@ -15,6 +15,7 @@ class TypstCalculatorServer:
             calculator = get_default_calculator()
         self.calculator = calculator
         self.precision = precision
+        self.max_sub_count = 5
         self.cache_variance_names = []
         self.cache_mode = True
 
@@ -93,10 +94,9 @@ class TypstCalculatorServer:
 
     def subs(self, typst_math: str, typst_file: str = None):
         expr = self.sympy(typst_math, typst_file)
-        max_sub_count = 5
         sub_count = 0
         last = None
-        while last != expr and sub_count < max_sub_count:
+        while last != expr and sub_count < self.max_sub_count:
             last = expr
             expr = expr.subs(self.variances, simultaneous=True)
             sub_count += 1
@@ -108,10 +108,9 @@ class TypstCalculatorServer:
     def simplify(self, typst_math: str, typst_file: str = None):
         expr = self.sympy(typst_math, typst_file)
         if self.enable_subs:
-            max_sub_count = 5
             sub_count = 0
             last = None
-            while last != expr and sub_count < max_sub_count:
+            while last != expr and sub_count < self.max_sub_count:
                 last = expr
                 expr = expr.subs(self.variances, simultaneous=True)
                 sub_count += 1
@@ -124,10 +123,9 @@ class TypstCalculatorServer:
     def evalf(self, typst_math: str, typst_file: str = None, n: int = None):
         expr = self.sympy(typst_math, typst_file)
         if self.enable_subs:
-            max_sub_count = 5
             sub_count = 0
             last = None
-            while last != expr and sub_count < max_sub_count:
+            while last != expr and sub_count < self.max_sub_count:
                 last = expr
                 expr = expr.subs(self.variances, simultaneous=True)
                 sub_count += 1
