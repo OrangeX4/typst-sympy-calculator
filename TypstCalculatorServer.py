@@ -1,3 +1,5 @@
+import itertools
+from typing import Iterable
 import sympy
 import math
 import re
@@ -5,17 +7,15 @@ import os
 from TypstCalculator import TypstCalculator
 from DefaultTypstCalculator import get_default_calculator
 
-VERSION = '0.4.2'
+VERSION = '0.4.8'
 
 
 class TypstCalculatorServer:
 
-    def __init__(self, calculator: TypstCalculator = None, precision=15) -> None:
+    def __init__(self, calculator: TypstCalculator = None) -> None:
         if calculator is None:
             calculator = get_default_calculator()
         self.calculator = calculator
-        self.precision = precision
-        self.max_sub_count = 5
         self.cache_variance_names = []
         self.cache_mode = True
 
@@ -94,27 +94,15 @@ class TypstCalculatorServer:
 
     def subs(self, typst_math: str, typst_file: str = None):
         expr = self.sympy(typst_math, typst_file)
-        sub_count = 0
-        last = None
-        while last != expr and sub_count < self.max_sub_count:
-            last = expr
-            expr = expr.subs(self.variances, simultaneous=True)
-            sub_count += 1
+        result = self.calculator._subs(expr)
         if self.return_text:
-            return self.typst(expr)
+            return self.typst(result)
         else:
-            return expr
+            return result
 
     def simplify(self, typst_math: str, typst_file: str = None):
         expr = self.sympy(typst_math, typst_file)
-        if self.enable_subs:
-            sub_count = 0
-            last = None
-            while last != expr and sub_count < self.max_sub_count:
-                last = expr
-                expr = expr.subs(self.variances, simultaneous=True)
-                sub_count += 1
-        result = sympy.simplify(self.doit(expr))
+        result = self.calculator._simplify(expr)
         if self.return_text:
             return self.typst(result)
         else:
@@ -122,15 +110,15 @@ class TypstCalculatorServer:
 
     def evalf(self, typst_math: str, typst_file: str = None, n: int = None):
         expr = self.sympy(typst_math, typst_file)
-        if self.enable_subs:
-            sub_count = 0
-            last = None
-            while last != expr and sub_count < self.max_sub_count:
-                last = expr
-                expr = expr.subs(self.variances, simultaneous=True)
-                sub_count += 1
-        result = sympy.N(sympy.simplify(self.doit(expr)),
-                         n=n if n else self.precision)
+        result = self.calculator._evalf(expr, n)
+        if self.return_text:
+            return self.typst(result)
+        else:
+            return result
+
+    def solve(self, typst_math: str, typst_file: str = None):
+        expr = self.sympy(typst_math, typst_file)
+        result = self.calculator._solve(expr)
         if self.return_text:
             return self.typst(result)
         else:
@@ -261,7 +249,7 @@ class TypstCalculatorServer:
         for match in re.finditer(pattern2, typst_content):
             paths.append(match.group(1))
         return paths
-    
+
     def remove_comments(self, typst_content: str) -> str:
         '''
         // #let var = 2.0
@@ -292,4 +280,10 @@ if __name__ == '__main__':
     expr = server.simplify('f(1) + f(1)', typst_file)
     print(expr)
     expr = server.simplify('xy + mail + mail.stamped', typst_file)
+    print(expr)
+    expr = server.solve('x + y + z = 1')
+    print(expr)
+    expr = server.solve('cases(x + y + z = 1, x = 2)')
+    print(expr)
+    expr = server.solve('cases(x^2 + y = 4, y = 2)')
     print(expr)

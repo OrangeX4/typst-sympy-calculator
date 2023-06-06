@@ -82,63 +82,67 @@ class TypstCalculator:
             sympy_expr = sympy_expr.doit()
         return sympy_expr
 
-    def subs(self, typst_math: str):
-        expr = self.sympy(typst_math)
+    def _subs(self, expr):
         sub_count = 0
         last = None
         while last != expr and sub_count < self.max_sub_count:
             last = expr
             expr = expr.subs(self.variances, simultaneous=True)
             sub_count += 1
+        return expr
+
+    def subs(self, typst_math: str):
+        expr = self.sympy(typst_math)
+        expr = self._subs(expr)
         if self.return_text:
             return self.typst(expr)
         else:
             return expr
 
+    def _simplify(self, expr):
+        if self.enable_subs:
+            expr = self._subs(expr)
+        result = sympy.simplify(self.doit(expr))
+        return result
+
     def simplify(self, typst_math: str):
         expr = self.sympy(typst_math)
-        if self.enable_subs:
-            sub_count = 0
-            last = None
-            while last != expr and sub_count < self.max_sub_count:
-                last = expr
-                expr = expr.subs(self.variances, simultaneous=True)
-                sub_count += 1
-        result = sympy.simplify(self.doit(expr))
+        result = self._simplify(expr)
         if self.return_text:
             return self.typst(result)
         else:
             return result
 
-    def evalf(self, typst_math: str, n: int = None):
-        expr = self.sympy(typst_math)
+    def _evalf(self, expr, n: int = None):
         if self.enable_subs:
-            sub_count = 0
-            last = None
-            while last != expr and sub_count < self.max_sub_count:
-                last = expr
-                expr = expr.subs(self.variances, simultaneous=True)
-                sub_count += 1
+            expr = self._subs(expr)
         result = sympy.N(sympy.simplify(self.doit(expr)),
                          n=n if n else self.precision)
+        return result
+
+    def evalf(self, typst_math: str, n: int = None):
+        expr = self.sympy(typst_math)
+        result = self._evalf(expr, n)
         if self.return_text:
             return self.typst(result)
         else:
             return result
-        
-    def solve(self, typst_math: str):
-        expr = self.sympy(typst_math)
+
+    def _solve(self, expr):
         if self.enable_subs:
             sub_count = 0
             last = None
             while last != expr and sub_count < self.max_sub_count:
                 last = expr
                 if isinstance(expr, list):
-                    expr = [e.subs(self.variances, simultaneous=True) for e in expr]
+                    expr = [e.subs(self.variances, simultaneous=True)
+                            for e in expr]
                 if isinstance(expr, tuple):
-                    expr = tuple(e.subs(self.variances, simultaneous=True) for e in expr)
+                    expr = tuple(e.subs(self.variances, simultaneous=True)
+                                 for e in expr)
                 elif isinstance(expr, dict):
-                    expr = {k: v.subs(self.variances, simultaneous=True) for k, v in expr.items()}
+                    expr = {k: v.subs(self.variances, simultaneous=True)
+                            for k, v in expr.items()}
                 else:
                     expr = expr.subs(self.variances, simultaneous=True)
                 sub_count += 1
@@ -174,11 +178,15 @@ class TypstCalculator:
                     result.extend(sympy.solve(expr, subset, dict=True))
             else:
                 result = sympy.solve(expr, dict=True)
+        return result
+
+    def solve(self, typst_math: str):
+        expr = self.sympy(typst_math)
+        result = self._solve(expr)
         if self.return_text:
             return self.typst(result)
         else:
             return result
-
 
     @property
     def id2type(self):
@@ -224,6 +232,6 @@ if __name__ == '__main__':
     @constant()
     def convert_pi():
         return sympy.pi
-    
+
     expr = calculator.simplify('pi')
     assert expr == 'pi'

@@ -328,12 +328,3 @@ if __name__ == '__main__':
 
     expr = calculator.simplify('x^2 bar_1^(2+1)')
     assert expr == '8'
-
-    expr = calculator.solve('x + y + z = 1')
-    print(expr)
-
-    expr = calculator.solve('cases(x + y + z = 1, x = 2)')
-    print(expr)
-
-    expr = calculator.solve('cases(x^2 + y = 4, y = 2)')
-    print(expr)
