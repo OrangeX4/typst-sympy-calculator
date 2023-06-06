@@ -81,11 +81,24 @@ class TypstMathConverter(object):
         self.printer = TypstMathPrinter()
 
     def define(self, name: str, type: str, func: Callable = None):
+        if name.startswith('#'):
+            name = name[1:]
+        self.id2type[name.split('_')[0]] = type
+        if isinstance(func, Callable):
+            self.id2func[name] = func
+        name = '#' + name
         self.id2type[name.split('_')[0]] = type
         if isinstance(func, Callable):
             self.id2func[name] = func
 
     def undefine(self, name: str):
+        if name.startswith('#'):
+            name = name[1:]
+        if name in self.id2type:
+            del self.id2type[name]
+        if name in self.id2func:
+            del self.id2func[name]
+        name = '#' + name
         if name in self.id2type:
             del self.id2type[name]
         if name in self.id2func:

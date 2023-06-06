@@ -282,14 +282,14 @@ if __name__ == '__main__':
     expr = server.simplify('1 + 1', typst_file)
     print(expr)
     server.enable_subs = False
-    expr = server.simplify('a + 1', typst_file)
+    expr = server.simplify('#a + 1', typst_file)
     print(expr)
     server.enable_subs = True
-    expr = server.simplify('a + 1', typst_file)
+    expr = server.simplify('#a + 1', typst_file)
     print(expr)
     expr = server.simplify('b + 1', typst_file)
     print(expr)
-    expr = server.simplify('cmat(1, 2)', typst_file)
+    expr = server.simplify('#cmat(1, 2)', typst_file)
     print(expr)
     expr = server.simplify('f(1) + f(1)', typst_file)
     print(expr)

@@ -20,6 +20,7 @@ options {
 fragment WS_CHAR: [ \t\r\n];
 fragment DIGIT: [0-9];
 fragment LETTER: [a-zA-Z];
+fragment HASHTAG: '#';
 
 MATH_START: '<typst_math_start>';
 MATH_END: '<typst_math_end>';
@@ -66,7 +67,7 @@ NUMBER:
 	| DIGIT* (COMMA DIGIT DIGIT DIGIT)* PERIOD DIGIT*;
 
 ID:
-	LETTER (LETTER | DIGIT)* (PERIOD LETTER (LETTER | DIGIT)*)* {self.setType()};
+	HASHTAG? LETTER (LETTER | DIGIT)* (PERIOD LETTER (LETTER | DIGIT)*)* {self.setType()};
 
 // --------------------------------------------------------------------------------
 
