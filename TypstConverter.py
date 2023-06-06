@@ -92,6 +92,15 @@ class TypstMathPrinter(StrPrinter):
             return base + '^' + self.doprint(e)
         else:
             return base + '^' + '(' + self.doprint(e) + ')'
+    
+    def _print_And(self, expr):
+        return ' and '.join([self.doprint(item) for item in expr.args])
+
+    def _print_Or(self, expr):
+        return ' or '.join([self.doprint(item) for item in expr.args])
+
+    def _print_Not(self, expr):
+        return 'not ' + self.doprint(expr.args[0])
 
 
 class TypstMathConverter(object):

@@ -287,3 +287,5 @@ if __name__ == '__main__':
     print(expr)
     expr = server.solve('cases(x^2 + y = 4, y = 2)')
     print(expr)
+    expr = server.solve('cases(x < 2, x > 1)')
+    print(expr)
