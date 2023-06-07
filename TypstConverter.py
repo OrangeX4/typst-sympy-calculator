@@ -34,11 +34,19 @@ class TypstMathPrinter(StrPrinter):
             if x == '-1':
                 return '-' + y
             return x + ' ' + y
-        x = expr.args[0]
-        if x.is_Pow and x.args[1].is_Number and x.args[1] < 0:
-            return (reduce(mul, [self.paren(arg) for arg in expr.args[1:]]) if len(expr.args) > 1 else '1') + ' / ' + self.paren(sympy.simplify(x ** -1))
+        if len(expr.args) >= 2 and expr.args[0].is_Number:
+            num = expr.args[0]
+            x = expr.args[1]
+            if x.is_Pow and x.args[1].is_Number and x.args[1] < 0:
+                return (reduce(mul, [self.paren(arg) for arg in [num] + list(expr.args[2:])])) + ' / ' + self.paren(sympy.simplify(x ** -1))
+            else:
+                return reduce(mul, [self.paren(arg) for arg in expr.args])
         else:
-            return reduce(mul, [self.paren(arg) for arg in expr.args])
+            x = expr.args[0]
+            if x.is_Pow and x.args[1].is_Number and x.args[1] < 0:
+                return (reduce(mul, [self.paren(arg) for arg in expr.args[1:]]) if len(expr.args) > 1 else '1') + ' / ' + self.paren(sympy.simplify(x ** -1))
+            else:
+                return reduce(mul, [self.paren(arg) for arg in expr.args])
     
     # matrix form: mat(1, 2; 3, 4)
     def _print_MatrixBase(self, expr):
@@ -220,39 +228,39 @@ class TypstMathConverter(object):
         else:
             return self.convert_mp(additive.mp())
 
-    def convert_mp(self, mp):
+    def convert_mp(self, mp, is_denominator=False):
         mp_op = mp.MP_OP()
         if mp_op:
             mps = mp.mp()
             assert len(mps) == 2
             op = mp_op.getText()
 
-            def mp_at(i):
-                return self.convert_mp(mps[i])
+            def mp_at(i, is_denominator=False):
+                return self.convert_mp(mps[i], is_denominator=is_denominator)
             if op == '*':
                 return mp_at(0) * mp_at(1)
             elif op == '/':
-                return mp_at(0) / mp_at(1)
+                return mp_at(0) / mp_at(1, True)
             elif op == '\\/':
-                return mp_at(0) / mp_at(1)
+                return mp_at(0) / mp_at(1, True)
             elif op in self.id2type and self.id2type[op] == 'MP_OP':
                 assert op in self.id2func, f'function for {op} not found'
                 return self.id2func[op](mp)
             else:
                 raise Exception(f'unknown mp operator {op}')
         else:
-            return self.convert_unary(mp.unary())
+            return self.convert_unary(mp.unary(), is_denominator=is_denominator)
 
-    def convert_unary(self, unary):
+    def convert_unary(self, unary, is_denominator=False):
         additive_op = unary.ADDITIVE_OP()
         if additive_op:
             unary = unary.unary()
             assert unary
             op = additive_op.getText()
             if op == '+':
-                return self.convert_unary(unary)
+                return self.convert_unary(unary, is_denominator=is_denominator)
             elif op == '-':
-                return -self.convert_unary(unary)
+                return -self.convert_unary(unary, is_denominator=is_denominator)
             else:
                 raise Exception(f'unsupport unary operator {op}')
         else:
@@ -261,7 +269,10 @@ class TypstMathConverter(object):
             if len(postfixes) == 1:
                 return postfixes[0]
             else:
-                return reduce(lambda x, y: x * y, postfixes)
+                if is_denominator:
+                    return  postfixes[0] / reduce(lambda x, y: x * y, postfixes[1:])
+                else:
+                    return reduce(lambda x, y: x * y, postfixes)
     
     def convert_eval_at(self, expr, eval_at):
         # eval_at: EVAL_BAR subsupassign;
