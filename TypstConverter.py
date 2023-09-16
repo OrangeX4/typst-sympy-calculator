@@ -13,10 +13,10 @@ class TypstMathPrinter(StrPrinter):
     def _print_list(self, lst):
         lst = list(set([self.doprint(item) for item in lst]))
         # lst = [self.doprint(item) for item in lst]
-        return ', '.join(lst)
+        return '(' + ', '.join(lst) + ')'
 
     def _print_tuple(self, tup):
-        return ', '.join([self.doprint(item) for item in tup])
+        return '(' + ', '.join([self.doprint(item) for item in tup]) + ')'
     
     def _print_dict(self, dic):
         if len(dic) == 0:

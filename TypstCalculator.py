@@ -3,6 +3,16 @@ from typing import Iterable
 import sympy
 from TypstConverter import TypstMathConverter
 
+def unfold_process(process, expr):
+    if isinstance(expr, list):
+        return [unfold_process(process, e) for e in expr]
+    elif isinstance(expr, dict):
+        return {k: unfold_process(process, v) for k, v in expr.items()}
+    else:
+        try:
+            return process(expr)
+        except Exception:
+            return expr
 
 class TypstCalculator:
 
@@ -87,7 +97,7 @@ class TypstCalculator:
         last = None
         while last != expr and sub_count < self.max_sub_count:
             last = expr
-            expr = expr.subs(self.variances, simultaneous=True)
+            expr = unfold_process(lambda e: e.subs(self.variances, simultaneous=True), expr)
             sub_count += 1
         return expr
 
@@ -102,7 +112,7 @@ class TypstCalculator:
     def _simplify(self, expr):
         if self.enable_subs:
             expr = self._subs(expr)
-        result = sympy.simplify(self.doit(expr))
+        result = unfold_process(lambda e: sympy.simplify(self.doit(e)), expr)
         return result
 
     def simplify(self, typst_math: str):
@@ -116,8 +126,7 @@ class TypstCalculator:
     def _evalf(self, expr, n: int = None):
         if self.enable_subs:
             expr = self._subs(expr)
-        result = sympy.N(sympy.simplify(self.doit(expr)),
-                         n=n if n else self.precision)
+        result = unfold_process(lambda e: sympy.N(sympy.simplify(self.doit(e)), n=n if n else self.precision), expr)
         return result
 
     def evalf(self, typst_math: str, n: int = None):
@@ -130,22 +139,7 @@ class TypstCalculator:
 
     def _solve(self, expr):
         if self.enable_subs:
-            sub_count = 0
-            last = None
-            while last != expr and sub_count < self.max_sub_count:
-                last = expr
-                if isinstance(expr, list):
-                    expr = [e.subs(self.variances, simultaneous=True)
-                            for e in expr]
-                if isinstance(expr, tuple):
-                    expr = tuple(e.subs(self.variances, simultaneous=True)
-                                 for e in expr)
-                elif isinstance(expr, dict):
-                    expr = {k: v.subs(self.variances, simultaneous=True)
-                            for k, v in expr.items()}
-                else:
-                    expr = expr.subs(self.variances, simultaneous=True)
-                sub_count += 1
+            expr = self._subs(expr)
         if isinstance(expr, Iterable):
             # is all equations
             is_all_equations = True
