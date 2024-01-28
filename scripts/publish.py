@@ -20,4 +20,4 @@ if __name__ == '__main__':
     # remove old wheels by delete ./dist/*
     delete_path_recursively('./dist')
     os.system('python setup.py bdist_wheel')
-    os.system('twine upload dist/*')
+    os.system('twine upload --repository typst-sympy-calculator dist/*')

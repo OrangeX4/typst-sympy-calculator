@@ -241,7 +241,7 @@ class TypstCalculatorServer:
         #include "../../../Typst/report-template.typ"
         '''
         typst_content = self.remove_comments(typst_content)
-        pattern1 = r'#import[\t ]+"[^@](.*?)"'
+        pattern1 = r'#import[\t ]+"([^@].*?)"'
         pattern2 = r'#include[\t ]+"(.+?)"'
         paths = []
         for match in re.finditer(pattern1, typst_content):
